@@ -5,6 +5,6 @@ module at.zombi.shooter {
 
     opens at.zombi.shooter to javafx.fxml;
     exports at.zombi.shooter;
-    exports at.zombi.shooter.controller;
-    opens at.zombi.shooter.controller to javafx.fxml;
+    exports at.zombi.shooter.scene;
+    opens at.zombi.shooter.scene to javafx.fxml;
 }
