@@ -25,8 +25,8 @@ tasks.withType(JavaCompile) {
 }
 
 application {
-  mainModule = 'at.zombi.shooter.zombishooter'
-  mainClass = 'at.zombi.shooter.zombishooter.HelloApplication'
+  mainModule = 'at.zombi.shooter'
+  mainClass = 'at.zombi.shooter.Application'
 }
 
 javafx {
