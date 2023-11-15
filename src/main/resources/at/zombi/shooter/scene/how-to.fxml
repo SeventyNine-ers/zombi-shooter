@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+
+<GridPane alignment="CENTER"  xmlns:fx="http://javafx.com/fxml"
+          fx:controller="at.zombi.shooter.scene.HowToController">
+  <Label fx:id="howToText"/>
+</GridPane>
