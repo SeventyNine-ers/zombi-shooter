@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
-import java.util.function.Function;
 
 public class MainMenuController {
     @FXML
@@ -27,7 +26,7 @@ public class MainMenuController {
 
             Platform.runLater(() -> {
                 try {
-                    SceneManager.getSceneManager().showHowTo();
+                    SceneManager.getSceneManager().showGameScene();
                 } catch(IOException e) {
                     throw new RuntimeException(e);
                 }

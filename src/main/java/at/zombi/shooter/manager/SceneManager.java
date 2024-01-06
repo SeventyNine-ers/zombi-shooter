@@ -8,10 +8,10 @@ import java.io.IOException;
 
 public class SceneManager {
     private static SceneManager sceneManager;
-    private final Pane mainScene;
+    private final Pane mainPane;
 
     private SceneManager() {
-        this.mainScene = new Pane();
+        this.mainPane = new Pane();
     }
 
     public static synchronized SceneManager getSceneManager() {
@@ -21,25 +21,25 @@ public class SceneManager {
         return sceneManager;
     }
 
-    public Pane getMainScene() {
-        return mainScene;
+    public Pane getMainPane() {
+        return mainPane;
     }
 
     public void showMainMenu() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainMenuController.class.getResource("main-menu.fxml"));
-        getMainScene().getChildren().clear();
-        getMainScene().getChildren().add(fxmlLoader.load());
+        getMainPane().getChildren().clear();
+        getMainPane().getChildren().add(fxmlLoader.load());
     }
 
     public void showHowTo() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HowToController.class.getResource("how-to.fxml"));
-        getMainScene().getChildren().clear();
-        getMainScene().getChildren().add(fxmlLoader.load());
+        getMainPane().getChildren().clear();
+        getMainPane().getChildren().add(fxmlLoader.load());
     }
 
     public void showGameScene() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(GameSceneController.class.getResource("game-scene.fxml"));
-        getMainScene().getChildren().clear();
-        getMainScene().getChildren().add(fxmlLoader.load());
+        getMainPane().getChildren().clear();
+        getMainPane().getChildren().add(fxmlLoader.load());
     }
 }

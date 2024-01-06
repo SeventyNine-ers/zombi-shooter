@@ -12,7 +12,7 @@ public class Application extends javafx.application.Application {
     public void start(Stage stage) throws IOException {
         SceneManager sceneManager = SceneManager.getSceneManager();
 
-        Pane mainScene = sceneManager.getMainScene();
+        Pane mainScene = sceneManager.getMainPane();
         Scene scene = new Scene(mainScene, 320, 240);
         stage.setTitle("Zombi-Shooter");
         stage.setScene(scene);
