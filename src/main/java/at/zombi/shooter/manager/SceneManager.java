@@ -1,5 +1,6 @@
 package at.zombi.shooter.manager;
 
+import at.zombi.shooter.game.GameRunManager;
 import at.zombi.shooter.scene.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -28,6 +29,7 @@ public class SceneManager {
     }
 
     public void showMainMenu() throws IOException {
+        GameRunManager.getGameRunManager().stopGame();
         FXMLLoader fxmlLoader = new FXMLLoader(MainMenuController.class.getResource("main-menu.fxml"));
         getMainPane().getChildren().clear();
         Node scene = fxmlLoader.load();
@@ -36,6 +38,7 @@ public class SceneManager {
     }
 
     public void showHowTo() throws IOException {
+        GameRunManager.getGameRunManager().stopGame();
         FXMLLoader fxmlLoader = new FXMLLoader(HowToController.class.getResource("how-to.fxml"));
         getMainPane().getChildren().clear();
         Node scene = fxmlLoader.load();

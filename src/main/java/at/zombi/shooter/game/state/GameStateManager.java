@@ -1,18 +1,16 @@
 package at.zombi.shooter.game.state;
 
 public class GameStateManager {
-
     private static GameStateManager gameStateManager;
 
-    private boolean paused = false;
-    private boolean lost = false;
-    private boolean won = false;
-    private long timeRemaining = 300;
-
-    private GameMap gameMap = new GameMap();
+    private boolean firstStart = true;
+    private GameState state = GameState.PAUSED;
+    private long timeRemaining;
+    private GameMap gameMap;
 
     private GameStateManager() {
         // Singleton
+        resetGameState();
     }
 
     public static synchronized GameStateManager getGameStateManager() {
@@ -22,28 +20,12 @@ public class GameStateManager {
         return gameStateManager;
     }
 
-    public boolean isPaused() {
-        return paused;
-    }
-
-    public void setPaused(boolean paused) {
-        this.paused = paused;
-    }
-
-    public boolean hasLost() {
-        return lost;
-    }
-
-    public void setLost(boolean lost) {
-        this.lost = lost;
-    }
-
-    public boolean hasWon() {
-        return won;
-    }
-
-    public void setWon(boolean won) {
-        this.won = won;
+    public void resetGameState() {
+        setTimeRemaining(300);
+        this.gameMap = new GameMap();
+        this.gameMap.initMap();
+        state = GameState.RUNNING;
+        this.firstStart = true;
     }
 
     public long getTimeRemaining() {
@@ -56,5 +38,21 @@ public class GameStateManager {
 
     public GameMap getGameMap() {
         return gameMap;
+    }
+
+    public GameState getState() {
+        return state;
+    }
+
+    public void setState(GameState state) {
+        this.state = state;
+    }
+
+    public boolean isFirstStart() {
+        return firstStart;
+    }
+
+    public void setFirstStart(boolean firstStart) {
+        this.firstStart = firstStart;
     }
 }

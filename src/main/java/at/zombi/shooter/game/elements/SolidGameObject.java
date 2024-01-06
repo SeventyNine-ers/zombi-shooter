@@ -12,8 +12,14 @@ public abstract class SolidGameObject extends GameObject {
         this.hitbox = hitbox;
     }
 
+    // Gives you the hitbox relative to the GameObject Coords
     public Hitbox getHitbox() {
         return hitbox;
+    }
+
+    // Gives you the hitbox in absolut coordinates
+    public Hitbox getAbsolutHitbox() {
+        return hitbox.getAbsolutHitBox(getPosition());
     }
 
     public void setHitbox(Hitbox hitbox) {

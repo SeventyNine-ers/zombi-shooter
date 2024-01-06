@@ -16,6 +16,7 @@ public class DeltaTimeManager {
 
     public void update() {
         if (lastTick == 0) {
+            lastTick = System.currentTimeMillis();
             return;
         }
         long currentTick = System.currentTimeMillis();
@@ -24,6 +25,11 @@ public class DeltaTimeManager {
         double targetTickTime = 1000d / (double) GameMainLoop.TARGET_TICK_RATE; // because 1000ms per second and tick rate is per secound
 
         deltaTime = tickTime / targetTickTime;
+
+        // Ignore to extreme delays in tick time to prevent breaking stuff
+        if (deltaTime > 50) {
+            deltaTime = 1;
+        }
 
         this.lastTick = currentTick;
     }
