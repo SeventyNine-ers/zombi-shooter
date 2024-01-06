@@ -5,12 +5,21 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="at.zombi.shooter.scene.MainMenuController">
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.layout.Region?>
+<VBox alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      spacing="8.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="at.zombi.shooter.scene.MainMenuController"
+      fx:id="titleVBox">
   <padding>
     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
   </padding>
 
-  <Label fx:id="welcomeText"/>
-  <Button text="Hello!" onAction="#onHelloButtonClick"/>
+  <Label fx:id="gameTitle" minHeight="16" minWidth="69" text="Zombi-Shooter"/>
+  <Region VBox.vgrow="ALWAYS" maxHeight="90" />
+  <Button text="Start Game" mnemonicParsing="false" minWidth="200" minHeight="40" onAction="#onStartButtonClick"/>
+  <Button text="How To?" mnemonicParsing="false" minWidth="200" minHeight="40" onAction="#onHowToButtonClick"/>
+  <Button text="Exit" mnemonicParsing="false" minWidth="200" minHeight="40" onAction="#onExitButtonClick"/>
+  <Region VBox.vgrow="ALWAYS" maxHeight="200" />
 </VBox>

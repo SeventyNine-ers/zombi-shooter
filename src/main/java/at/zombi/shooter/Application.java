@@ -13,7 +13,7 @@ public class Application extends javafx.application.Application {
         SceneManager sceneManager = SceneManager.getSceneManager();
 
         Pane mainScene = sceneManager.getMainPane();
-        Scene scene = new Scene(mainScene, 320, 240);
+        Scene scene = new Scene(mainScene, 1280, 720);
         stage.setTitle("Zombi-Shooter");
         stage.setScene(scene);
         stage.show();
