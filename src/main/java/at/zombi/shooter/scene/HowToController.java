@@ -1,7 +1,11 @@
 package at.zombi.shooter.scene;
 
+import at.zombi.shooter.manager.SceneManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+
+import java.io.IOException;
 
 public class HowToController {
     @FXML
@@ -10,5 +14,9 @@ public class HowToController {
     @FXML
     public void initialize() {
         howToText.setText("How-To Screen!");
+    }
+
+    public void onMenuButtonClick(ActionEvent actionEvent) throws IOException {
+        SceneManager.getSceneManager().showMainMenu();
     }
 }

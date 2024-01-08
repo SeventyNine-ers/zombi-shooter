@@ -1,5 +1,8 @@
 package at.zombi.shooter.scene;
 
+import at.zombi.shooter.game.GameRunManager;
+import at.zombi.shooter.game.loop.GameMainLoop;
+import at.zombi.shooter.game.rendering.GameRenderer;
 import at.zombi.shooter.manager.ControlInputManager;
 import at.zombi.shooter.manager.SceneManager;
 import javafx.fxml.FXML;
@@ -13,7 +16,6 @@ public class GameSceneController {
 
     @FXML
     public void initialize() {
-        ControlInputManager.getControlInputManager();
-        // TODO Start game loop in second thread. Register new AnimationTimer for Render Loop
+        GameRunManager.getGameRunManager().startGame(gameView);
     }
 }

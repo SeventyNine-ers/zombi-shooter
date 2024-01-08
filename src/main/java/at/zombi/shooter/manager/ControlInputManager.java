@@ -1,7 +1,16 @@
 package at.zombi.shooter.manager;
 
+import at.zombi.shooter.game.util.Vector2D;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ControlInputManager {
     private static ControlInputManager controlInputManager;
@@ -11,15 +20,17 @@ public class ControlInputManager {
     private boolean left = false;
     private boolean right = false;
     private boolean pauseGame = false;
+    private Map<MouseButton, Vector2D> mouseClicks = new ConcurrentHashMap<>();
 
     private ControlInputManager() {
         Scene scene = SceneManager.getSceneManager().getMainPane().getScene();
         scene.addEventHandler(KeyEvent.KEY_PRESSED, (keyEvent) -> handleKeyEvent(keyEvent, true));
+        scene.addEventHandler(MouseEvent.MOUSE_PRESSED, (mouseEvent) -> handleMouseEvent(mouseEvent));
         scene.addEventHandler(KeyEvent.KEY_RELEASED, (keyEvent) -> handleKeyEvent(keyEvent, false));
     }
 
     public static ControlInputManager getControlInputManager() {
-        if(controlInputManager == null) {
+        if (controlInputManager == null) {
             controlInputManager = new ControlInputManager();
         }
         return controlInputManager;
@@ -65,9 +76,13 @@ public class ControlInputManager {
         this.pauseGame = pauseGame;
     }
 
-    private void handleKeyEvent(KeyEvent keyEvent, boolean state){
+    private void handleMouseEvent(MouseEvent mouseEvent) {
+        mouseClicks.put(mouseEvent.getButton(), new Vector2D(mouseEvent.getSceneX(), mouseEvent.getSceneY()));
+    }
+
+    private void handleKeyEvent(KeyEvent keyEvent, boolean state) {
         String character = keyEvent.getCode().getName().toUpperCase();
-        switch (character){
+        switch (character) {
             case "W":
                 setForward(state);
                 break;
@@ -86,5 +101,13 @@ public class ControlInputManager {
             default:
                 break;
         }
+    }
+
+    public Vector2D hasLeftClicked() {
+        Vector2D target = mouseClicks.get(MouseButton.PRIMARY);
+        if (target != null) {
+            mouseClicks.remove(MouseButton.PRIMARY);
+        }
+        return target;
     }
 }
