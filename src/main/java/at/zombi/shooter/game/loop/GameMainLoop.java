@@ -1,8 +1,11 @@
 package at.zombi.shooter.game.loop;
 
 import at.zombi.shooter.game.elements.GameObject;
+import at.zombi.shooter.game.elements.Zombie;
 import at.zombi.shooter.game.state.GameState;
 import at.zombi.shooter.game.state.GameStateManager;
+import at.zombi.shooter.game.util.Vector2D;
+import at.zombi.shooter.manager.ControlInputManager;
 
 public class GameMainLoop {
     public static final int TARGET_TICK_RATE = 60; // Game ticks per second
@@ -31,25 +34,63 @@ public class GameMainLoop {
     private void mainLoop() {
         while(running) {
             long startTime = System.currentTimeMillis();
+            GameStateManager gameStateManager = GameStateManager.getGameStateManager();
 
-            if (GameState.RUNNING.equals(GameStateManager.getGameStateManager().getState())) {
-                GameStateManager.getGameStateManager().getGameMap().getAllGameObjects()
+            if (GameState.RUNNING.equals(gameStateManager.getState())) {
+                DeltaTimeManager.getDeltaTimeManager().update();
+                gameStateManager.getGameMap().getAllGameObjects()
                         .forEach(GameObject::update);
+                gameStateManager.updateTimeRemaining();
             } else {
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {}
+                sleepMillis(100);
             }
+            handleControlInputs();
 
-            DeltaTimeManager.getDeltaTimeManager().update();
-
-            // We make sure that delta time does not get to small.
-            long waitTime = (System.currentTimeMillis() - startTime) - 5;
-            if (waitTime < 0) {
-                try {
-                    Thread.sleep(-waitTime);
-                } catch (InterruptedException e) {}
-            }
+            checkIfGameIsWon();
+            spawnNewEnemies();
+            ensureMinLoopTime(startTime);
         }
+    }
+
+    private void spawnNewEnemies() {
+        // TODO Make a better map and spawn enemies properly
+        GameStateManager gameStateManager = GameStateManager.getGameStateManager();
+        long enemies = gameStateManager.getGameMap().getCollidableGameObjects().stream()
+                .filter(solid -> solid instanceof Zombie)
+                .count();
+        if (enemies < 40) {
+            gameStateManager.getGameMap().add(new Zombie(new Vector2D(800 + (Math.random() * 100) - 50, 800 + (Math.random() * 100) - 50)));
+        }
+    }
+
+    private void checkIfGameIsWon() {
+        GameStateManager gameStateManager = GameStateManager.getGameStateManager();
+        // Marke game as won if time is up
+        if (gameStateManager.getTimeRemaining() <= 0) {
+            gameStateManager.setState(GameState.WON);
+        }
+    }
+
+    private void ensureMinLoopTime(long startTime) {
+        // We make sure that delta time does not get to small.
+        long waitTime = (System.currentTimeMillis() - startTime) - 2;
+        if (waitTime < 0) {
+            sleepMillis(-waitTime);
+        }
+    }
+
+    private void handleControlInputs() {
+        ControlInputManager controlInputManager = ControlInputManager.getControlInputManager();
+        GameStateManager gameStateManager = GameStateManager.getGameStateManager();
+
+        if (controlInputManager.isPauseGame()) {
+            gameStateManager.setState(GameState.PAUSED);
+        }
+    }
+
+    private void sleepMillis(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {}
     }
 }

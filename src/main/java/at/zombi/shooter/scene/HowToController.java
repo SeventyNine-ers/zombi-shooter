@@ -13,7 +13,7 @@ public class HowToController {
 
     @FXML
     public void initialize() {
-        howToText.setText("How-To Screen!");
+        howToText.setText("Movement: W-A-S-D, Pause: Esc, Shoot: LeftClick");
     }
 
     public void onMenuButtonClick(ActionEvent actionEvent) throws IOException {

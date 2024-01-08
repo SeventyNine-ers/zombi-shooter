@@ -6,6 +6,7 @@ public class GameStateManager {
     private boolean firstStart = true;
     private GameState state = GameState.PAUSED;
     private long timeRemaining;
+    private long lastUnixSecond;
     private GameMap gameMap;
 
     private GameStateManager() {
@@ -24,8 +25,16 @@ public class GameStateManager {
         setTimeRemaining(300);
         this.gameMap = new GameMap();
         this.gameMap.initMap();
-        state = GameState.RUNNING;
+        state = GameState.PAUSED;
         this.firstStart = true;
+    }
+
+    public void updateTimeRemaining() {
+        final long currentUnixSecond = System.currentTimeMillis() / 1000;
+        if (lastUnixSecond != currentUnixSecond) {
+            setTimeRemaining(getTimeRemaining() - 1); // We count fix down by 1 to prevent counting paused state.
+            lastUnixSecond = currentUnixSecond;
+        }
     }
 
     public long getTimeRemaining() {

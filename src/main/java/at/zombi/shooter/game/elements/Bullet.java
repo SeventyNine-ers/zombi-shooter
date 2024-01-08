@@ -12,37 +12,52 @@ import java.util.List;
 
 public class Bullet extends Entity {
 
+    private final int attackDamage;
+
     public Bullet(Vector2D position, Vector2D velocity) {
         super(position, new Hitbox(new Vector2D(-5, -5), new Vector2D(5, 5)), 100);
         setVelocity(new Vector2D(velocity));
+        attackDamage = 100;
     }
 
     @Override
     public void update() {
-        GameStateManager gameStateManager = GameStateManager.getGameStateManager();
         double deltaTime = DeltaTimeManager.getDeltaTimeManager().getDeltaTime();
         getPosition().add(getVelocity().x * deltaTime, getVelocity().y * deltaTime);
 
+        processCollisions();
+    }
+
+    private void processCollisions() {
+        GameStateManager gameStateManager = GameStateManager.getGameStateManager();
         for (SolidGameObject solid : gameStateManager.getGameMap().getCollidableGameObjects()) {
-            if (solid == this || solid instanceof Player) {
+            if (solid instanceof Bullet || solid instanceof Player) {
                 continue;
             }
-            boolean overlap = solid.getAbsolutHitbox().overlap(getAbsolutHitbox());
-            if (overlap) {
-                if (solid instanceof Entity) {
-                    Entity entity = ((Entity)solid);
-                    entity.setHealth(entity.getHealth() - getHealth());
-                }
-                gameStateManager.getGameMap().remove(this);
-                return;
+            if (solid.getAbsolutHitbox().overlap(getAbsolutHitbox())) {
+                handleCollisionEvent(solid);
             }
         }
+    }
+
+    private void handleCollisionEvent(SolidGameObject solid) {
+        GameStateManager gameStateManager = GameStateManager.getGameStateManager();
+
+        // Deal damage to entity
+        if (solid instanceof Entity) {
+            Entity entity = ((Entity)solid);
+            entity.setHealth(entity.getHealth() - attackDamage);
+        }
+
+        // Bullet de-spawns after collision
+        gameStateManager.getGameMap().remove(this);
     }
 
     @Override
     public List<Node> render() {
         Rectangle shot = new Rectangle(getPosition().x - 10, getPosition().y - 5, 20, 10);
-        shot.setRotate(getVelocity().getAngle() * (180 / 3.1415926));
+        final double radToDeg = (180 / 3.1415926);
+        shot.setRotate(getVelocity().getAngle() * radToDeg);
         shot.setFill(Paint.valueOf("blue"));
         return List.of(shot);
     }

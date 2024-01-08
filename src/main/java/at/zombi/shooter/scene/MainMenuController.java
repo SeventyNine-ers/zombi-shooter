@@ -33,26 +33,6 @@ public class MainMenuController {
         gameTitle.setTextFill(Paint.valueOf("linear-gradient(from 25% 1% to 80% 100%, #3F8F45, #f77d36)"));
     }
 
-    // TODO Remove this
-    protected void oldCode() {
-        // TODO Proof of concept only. This is pfusch to show scene switching works DON't EVER DO THIS!!
-        new Thread(() -> {
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-            Platform.runLater(() -> {
-                try {
-                    SceneManager.getSceneManager().showGameScene();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            });
-        }).start();
-    }
-
     @FXML
     public void onStartButtonClick(ActionEvent actionEvent) throws IOException {
         SceneManager.getSceneManager().showGameScene();

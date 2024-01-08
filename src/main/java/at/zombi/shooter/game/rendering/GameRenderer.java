@@ -26,7 +26,7 @@ public class GameRenderer {
     public void renderLoop(long nowInMillis) {
         List<Node> screenElements = Stream.of(getCamera().render(), getOverlay().render())
                 .flatMap(Collection::stream)
-                .collect(Collectors.toList());
+                .toList();
 
         // TODO Adjust screenElements to screen size (currently fixed to 1280x720p)
 

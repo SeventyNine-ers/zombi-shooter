@@ -19,6 +19,7 @@ public class Application extends javafx.application.Application {
         Pane mainScene = sceneManager.getMainPane();
         Scene scene = new Scene(mainScene, SCREEN_WIDTH, SCREEN_HEIGHT);
         stage.setTitle("Zombi-Shooter");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
         sceneManager.showMainMenu();
