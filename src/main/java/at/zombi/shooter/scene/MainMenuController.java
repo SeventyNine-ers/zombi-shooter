@@ -1,15 +1,15 @@
 package at.zombi.shooter.scene;
 
+import at.zombi.shooter.Application;
 import at.zombi.shooter.manager.SceneManager;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 import java.io.IOException;
 
@@ -22,15 +22,15 @@ public class MainMenuController {
 
     @FXML
     public void initialize() {
-        titleVBox.setBackground(
-                new Background(new BackgroundFill(
-                        Paint.valueOf("linear-gradient(rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)"),
-                        null,
-                        null
-                ))
-        );
-        gameTitle.setFont(new Font("Stencil", 64));
-        gameTitle.setTextFill(Paint.valueOf("linear-gradient(from 25% 1% to 80% 100%, #3F8F45, #f77d36)"));
+
+        // Schriftart und Größe
+        gameTitle.setFont(Font.font("Chiller", FontWeight.BOLD, 120));
+        // Dunkelroter Text
+        gameTitle.setTextFill(Paint.valueOf("#B22222"));
+
+        // Füge Hintergundbild hinzu
+        titleVBox.setBackground(new Background(new BackgroundImage(new Image("/backgrounds/Zombi_Background_Titlescreen.png", Application.SCREEN_WIDTH, Application.SCREEN_HEIGHT, false, true), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
+
     }
 
     @FXML
