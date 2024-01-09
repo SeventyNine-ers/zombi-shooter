@@ -22,7 +22,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
+//Im Pairprogramming implementiert: Alexander Doubrava, Patrick Kristof
 public class Overlay implements Renderable {
 
     private static final Rectangle TRANSPARENT_OVERLAY = new Rectangle(-1, -1, Application.SCREEN_WIDTH, Application.SCREEN_HEIGHT);

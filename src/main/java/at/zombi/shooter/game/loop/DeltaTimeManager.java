@@ -1,5 +1,5 @@
 package at.zombi.shooter.game.loop;
-
+//Im Pairprogramming gemacht: Alexander Doubrava, Patrick Kristof
 public class DeltaTimeManager {
     private static DeltaTimeManager deltaTimeManager;
 

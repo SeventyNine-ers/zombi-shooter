@@ -4,7 +4,7 @@ import at.zombi.shooter.game.loop.GameMainLoop;
 import at.zombi.shooter.game.rendering.GameRenderer;
 import at.zombi.shooter.game.state.GameStateManager;
 import javafx.scene.layout.Pane;
-
+//Im Pairprogramming gemacht: Alexander Doubrava, Patrick Kristof
 public class GameRunManager {
     private static GameRunManager gameRunManager;
 
