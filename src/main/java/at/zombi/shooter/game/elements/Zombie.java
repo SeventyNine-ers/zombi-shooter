@@ -51,6 +51,9 @@ public class Zombie extends Entity {
                     getHitbox().getAbsolutHitBox(getPosition().getAdded(new Vector2D(0, getVelocity().y)))
             );
 
+            if ((overlapXCords || overlapYCords) && solid instanceof Player) {
+                ((Player) solid).hitByZombie(this);
+            }
             if (overlapXCords && overlapYCords) {
                 return;
             }

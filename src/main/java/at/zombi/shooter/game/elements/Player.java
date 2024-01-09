@@ -15,6 +15,7 @@ import java.util.List;
 
 public class Player extends Entity {
 
+    private static final int DAMAGE_IMMUNITY_SEC = 3;
     private long lastZombieHit = 0;
 
     public Player(Vector2D position) {
@@ -48,12 +49,8 @@ public class Player extends Entity {
     }
 
     private void handleEntityCollision(Entity entity) {
-        final int damageImmunitySec = 3;
-
-        // Reduce health if we touch zombie but only every 3 sec
-        if (entity instanceof Zombie && System.currentTimeMillis() - lastZombieHit > damageImmunitySec * 1000) {
-            lastZombieHit = System.currentTimeMillis();
-            setHealth(getHealth() - ((Zombie) entity).getAttackDamage());
+        if (entity instanceof Zombie) {
+            hitByZombie((Zombie) entity);
         }
     }
 
@@ -117,7 +114,7 @@ public class Player extends Entity {
         Rectangle playerModel = new Rectangle(getPosition().x - 20, getPosition().y - 20, 40, 40);
 
         // Let player blink after zombie hit for 5 sek
-        if (System.currentTimeMillis() - lastZombieHit < 5000 && (System.currentTimeMillis() / 100) * 100 % 200 == 0) {
+        if (System.currentTimeMillis() - lastZombieHit < (DAMAGE_IMMUNITY_SEC * 1000) && (System.currentTimeMillis() / 100) * 100 % 200 == 0) {
             playerModel.setFill(Paint.valueOf("grey"));
         } else {
             playerModel.setFill(Paint.valueOf("orange"));
@@ -129,4 +126,19 @@ public class Player extends Entity {
         return List.of(playerModel);
     }
 
+    public void hitByZombie(Zombie zombie) {
+        // Reduce health if we touch zombie but only every 3 sec
+        if (System.currentTimeMillis() - lastZombieHit > DAMAGE_IMMUNITY_SEC * 1000) {
+            setLastZombieHit(System.currentTimeMillis());
+            setHealth(getHealth() - zombie.getAttackDamage());
+        }
+    }
+
+    public long getLastZombieHit() {
+        return lastZombieHit;
+    }
+
+    public void setLastZombieHit(long lastZombieHit) {
+        this.lastZombieHit = lastZombieHit;
+    }
 }
