@@ -23,13 +23,28 @@ public class MainMenuController {
     @FXML
     public void initialize() {
 
-        // Schriftart und Größe
+        // Schriftart und Groesse
         gameTitle.setFont(Font.font("Chiller", FontWeight.BOLD, 120));
         // Dunkelroter Text
         gameTitle.setTextFill(Paint.valueOf("#B22222"));
 
-        // Füge Hintergundbild hinzu
-        titleVBox.setBackground(new Background(new BackgroundImage(new Image("/backgrounds/Zombi_Background_Titlescreen.png", Application.SCREEN_WIDTH, Application.SCREEN_HEIGHT, false, true), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
+        // Fuege Hintergundbild hinzu
+        titleVBox.setBackground(new Background(
+                new BackgroundImage(
+                        new Image(
+                                String.valueOf(MainMenuController.class.getResource(
+                                        "backgrounds/Zombi_Background_Titlescreen.png"
+                                )),
+                                Application.SCREEN_WIDTH, Application.SCREEN_HEIGHT,
+                                false,
+                                true
+                        ),
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundPosition.DEFAULT,
+                        BackgroundSize.DEFAULT
+                )
+        ));
 
     }
 

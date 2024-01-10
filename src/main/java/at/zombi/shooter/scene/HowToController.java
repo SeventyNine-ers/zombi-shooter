@@ -4,7 +4,6 @@ import at.zombi.shooter.Application;
 import at.zombi.shooter.manager.SceneManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
@@ -43,7 +42,21 @@ public class HowToController {
         howToText.setText(howToContent);
 
         // Füge Hintergundbild hinzu
-        howToVBox.setBackground(new Background(new BackgroundImage(new Image("/backgrounds/Zombi_Background_HowTo.jpg", Application.SCREEN_WIDTH, Application.SCREEN_HEIGHT, false, true), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
+        howToVBox.setBackground(new Background(new BackgroundImage(
+                new Image(
+                        String.valueOf(HowToController.class.getResource(
+                                "backgrounds/Zombi_Background_HowTo.jpg"
+                        )),
+                        Application.SCREEN_WIDTH,
+                        Application.SCREEN_HEIGHT,
+                        false,
+                        true
+                ),
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT
+        )));
 
     }
 
