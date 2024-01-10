@@ -41,7 +41,7 @@ public class HowToController {
         howToText.setTextAlignment(TextAlignment.LEFT);
         howToText.setText(howToContent);
 
-        // Füge Hintergundbild hinzu
+        // Fuege Hintergundbild hinzu
         howToVBox.setBackground(new Background(new BackgroundImage(
                 new Image(
                         String.valueOf(HowToController.class.getResource(

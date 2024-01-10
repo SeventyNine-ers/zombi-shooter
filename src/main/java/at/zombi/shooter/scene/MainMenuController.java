@@ -29,22 +29,20 @@ public class MainMenuController {
         gameTitle.setTextFill(Paint.valueOf("#B22222"));
 
         // Fuege Hintergundbild hinzu
-        titleVBox.setBackground(new Background(
-                new BackgroundImage(
-                        new Image(
-                                String.valueOf(MainMenuController.class.getResource(
-                                        "backgrounds/Zombi_Background_Titlescreen.png"
-                                )),
-                                Application.SCREEN_WIDTH, Application.SCREEN_HEIGHT,
-                                false,
-                                true
-                        ),
-                        BackgroundRepeat.NO_REPEAT,
-                        BackgroundRepeat.NO_REPEAT,
-                        BackgroundPosition.DEFAULT,
-                        BackgroundSize.DEFAULT
-                )
-        ));
+        titleVBox.setBackground(new Background(new BackgroundImage(
+                new Image(
+                        String.valueOf(MainMenuController.class.getResource(
+                                "backgrounds/Zombi_Background_Titlescreen.png"
+                        )),
+                        Application.SCREEN_WIDTH, Application.SCREEN_HEIGHT,
+                        false,
+                        true
+                ),
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT
+        )));
 
     }
 
