@@ -111,7 +111,8 @@ public class Player extends Entity {
 
     @Override
     public List<Node> render() {
-        Rectangle playerModel = new Rectangle(getPosition().x - 20, getPosition().y - 20, 40, 40);
+        //Rectangle playerModel = new Rectangle(getPosition().x - 20, getPosition().y - 20, 40, 40);
+        Polygon playerModel = new Polygon(getPosition().x, getPosition().y - 20, getPosition().x + 20, getPosition().y + 20, getPosition().x - 20, getPosition().y + 20);
 
         // Let player blink after zombie hit for 5 sek
         if (System.currentTimeMillis() - lastZombieHit < (DAMAGE_IMMUNITY_SEC * 1000) && (System.currentTimeMillis() / 100) * 100 % 200 == 0) {
@@ -119,10 +120,17 @@ public class Player extends Entity {
         } else {
             playerModel.setFill(Paint.valueOf("orange"));
         }
-        /* TODO Make player a triangle that points at the mouse
-            Polygon playerModel = new Polygon(getPosition().x, getPosition().y - 20, getPosition().x + 20, getPosition().y + 20, getPosition().x - 20, getPosition().y + 20);
-            playerModel.setFill(Paint.valueOf("orange"));
-        */
+
+        ControlInputManager controlInputManager = ControlInputManager.getControlInputManager();
+        Vector2D mousePosition = controlInputManager.getMousePosition();
+
+        final double radToDeg = (180 / 3.1415926);
+        playerModel.setRotate(mousePosition
+                .getAdded(new Vector2D(-Application.SCREEN_WIDTH / 2, -Application.SCREEN_HEIGHT / 2))
+                .getNormalized()
+                .getAngle() * radToDeg + 90
+        );
+
         return List.of(playerModel);
     }
 

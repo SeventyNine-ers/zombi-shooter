@@ -6,10 +6,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
-import java.util.LinkedList;
 import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ControlInputManager {
@@ -21,11 +18,13 @@ public class ControlInputManager {
     private boolean right = false;
     private boolean pauseGame = false;
     private Map<MouseButton, Vector2D> mouseClicks = new ConcurrentHashMap<>();
+    private Vector2D mousePosition = new Vector2D(0,0);
 
     private ControlInputManager() {
         Scene scene = SceneManager.getSceneManager().getMainPane().getScene();
         scene.addEventHandler(KeyEvent.KEY_PRESSED, (keyEvent) -> handleKeyEvent(keyEvent, true));
-        scene.addEventHandler(MouseEvent.MOUSE_PRESSED, (mouseEvent) -> handleMouseEvent(mouseEvent));
+        scene.addEventHandler(MouseEvent.MOUSE_PRESSED, this::handleMouseClick);
+        scene.addEventHandler(MouseEvent.MOUSE_MOVED, this::handleMouseMovement);
         scene.addEventHandler(KeyEvent.KEY_RELEASED, (keyEvent) -> handleKeyEvent(keyEvent, false));
     }
 
@@ -76,7 +75,11 @@ public class ControlInputManager {
         this.pauseGame = pauseGame;
     }
 
-    private void handleMouseEvent(MouseEvent mouseEvent) {
+    private void handleMouseMovement(MouseEvent mouseEvent) {
+        mousePosition = new Vector2D(mouseEvent.getSceneX(), mouseEvent.getSceneY());
+    }
+
+    private void handleMouseClick(MouseEvent mouseEvent) {
         mouseClicks.put(mouseEvent.getButton(), new Vector2D(mouseEvent.getSceneX(), mouseEvent.getSceneY()));
     }
 
@@ -109,5 +112,9 @@ public class ControlInputManager {
             mouseClicks.remove(MouseButton.PRIMARY);
         }
         return target;
+    }
+
+    public Vector2D getMousePosition() {
+        return mousePosition;
     }
 }
