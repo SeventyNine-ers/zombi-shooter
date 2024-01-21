@@ -6,6 +6,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.TextField?>
 <VBox alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity"
       spacing="8.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="at.zombi.shooter.scene.MainMenuController"
@@ -16,8 +17,5 @@
 
   <Label fx:id="gameTitle" minHeight="16" minWidth="69" text="Zombi-Shooter"/>
   <Region VBox.vgrow="ALWAYS" maxHeight="90" />
-  <Button text="Start Game" mnemonicParsing="false" minWidth="200" minHeight="40" onAction="#onStartButtonClick"/>
-  <Button text="How To?" mnemonicParsing="false" minWidth="200" minHeight="40" onAction="#onHowToButtonClick"/>
-  <Button text="Exit" mnemonicParsing="false" minWidth="200" minHeight="40" onAction="#onExitButtonClick"/>
   <Region VBox.vgrow="ALWAYS" maxHeight="200" />
 </VBox>

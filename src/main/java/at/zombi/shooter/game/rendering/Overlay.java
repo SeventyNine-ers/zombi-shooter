@@ -50,12 +50,12 @@ public class Overlay implements Renderable {
                     .collect(Collectors.toList());
         }
         if (GameState.LOST.equals(gameStateManager.getState())) {
-            return Stream.of(gameHeadsUpDisplay(), gameOverScreen("You lose"))
+            return Stream.of(gameHeadsUpDisplay(), gameOverScreen("You are Dead!"))
                     .flatMap(Collection::stream)
                     .collect(Collectors.toList());
         }
         if (GameState.WON.equals(gameStateManager.getState())) {
-            return Stream.of(gameHeadsUpDisplay(), gameOverScreen("You win!"))
+            return Stream.of(gameHeadsUpDisplay(), gameOverScreen("You survived!"))
                     .flatMap(Collection::stream)
                     .collect(Collectors.toList());
         }
@@ -63,7 +63,10 @@ public class Overlay implements Renderable {
         return gameHeadsUpDisplay();
     }
 
-    private List<Node> gameOverScreen(String text) {
+    private List<Node>
+
+
+    gameOverScreen(String text) {
         ControlInputManager controlInputManager = ControlInputManager.getControlInputManager();
         GameStateManager gameStateManager = GameStateManager.getGameStateManager();
 
@@ -144,9 +147,10 @@ public class Overlay implements Renderable {
 
         List<Node> gameOverlay = new ArrayList<>();
         Text deltaTime = new Text(10, Application.SCREEN_HEIGHT - 10, "DeltaTime: " + DeltaTimeManager.getDeltaTimeManager().getDeltaTime());
-        gameOverlay.add(deltaTime);
+        //gameOverlay.add(deltaTime);
 
         final long playerHealth = gameStateManager.getGameMap().getPlayer().getHealth();
+        final long playerScore = gameStateManager.getGameMap().getPlayer().getScore();
         for (long i = 0; i < playerHealth; i += 100) {
             Rectangle health = new Rectangle(10 + (i / 2d), 10, 40, 40);
             health.setFill(Paint.valueOf("red"));
@@ -162,6 +166,10 @@ public class Overlay implements Renderable {
         gameTimer.setFont(new Font("Calibri", 64));
         gameOverlay.add(gameTimer);
 
+        // Zeigt den Punktestand von der aktuelle Runden zentriert oben an.
+        Text DisplayedPlayerScore = new Text(Application.SCREEN_WIDTH - 750, 50, "Score: " + playerScore);
+        DisplayedPlayerScore.setFont(new Font("Calibri", 64));
+        gameOverlay.add(DisplayedPlayerScore);
         return gameOverlay;
     }
 

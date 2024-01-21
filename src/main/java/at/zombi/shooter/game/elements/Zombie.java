@@ -22,9 +22,12 @@ public class Zombie extends Entity {
     @Override
     public void update() {
         GameStateManager gameStateManager = GameStateManager.getGameStateManager();
+        Player player = gameStateManager.getGameMap().getPlayer();
         double deltaTime = DeltaTimeManager.getDeltaTimeManager().getDeltaTime();
         if (getHealth() <= 0) {
             gameStateManager.getGameMap().remove(this);
+            // Punkte anrechnen, wenn der Zombie stirbt
+            player.updateKillScore();
             return;
         }
 

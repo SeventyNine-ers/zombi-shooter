@@ -42,11 +42,15 @@ public class Bullet extends Entity {
 
     private void handleCollisionEvent(SolidGameObject solid) {
         GameStateManager gameStateManager = GameStateManager.getGameStateManager();
-
+        Player player = gameStateManager.getGameMap().getPlayer();
         // Deal damage to entity
         if (solid instanceof Entity) {
             Entity entity = ((Entity)solid);
             entity.setHealth(entity.getHealth() - attackDamage);
+        }
+        else {
+            // Zieht 5 Punkte ab, wenn man keinen Gegner trifft
+            player.updateMissScore();
         }
 
         // Bullet de-spawns after collision

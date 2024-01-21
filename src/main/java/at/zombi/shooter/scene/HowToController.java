@@ -29,13 +29,18 @@ public class HowToController {
                 "Spielregeln:\n" +
                 "  - Du hast 3 Leben (oben links)\n" +
                 "  - Überlebe, um das Spiel zu gewinnen!\n\n" +
+                "Punkteberechnung:\n" +
+                "  - Zombie kill (+10 Punkte)\n" +
+                "  - Jede überlebte Sekunde (+1 Punkt)\n" +
+                "  - Jedes Leben am Ende übrig (+50 Punkte)\n" +
+                "  - Jeder Schuss, der daneben geht (-5 Punkte)\n\n" +
                 "Viel Erfolg und gute Jagd!\n\n\n\n";
 
         howToText.setFont(Font.font("Arial", FontWeight.BOLD, 22));
 
         LinearGradient gradient = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE,
-                new Stop(0, Color.BLACK),
-                new Stop(1, Color.DARKGRAY)
+            new Stop(0, Color.GREENYELLOW),
+            new Stop(1, Color.DARKGREEN)
         );
         howToText.setFill(gradient);
         howToText.setTextAlignment(TextAlignment.LEFT);
