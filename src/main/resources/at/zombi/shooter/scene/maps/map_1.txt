@@ -1,0 +1,15 @@
+Player, 300, 300
+Tree, 250, 300
+Tree, 300, 220
+Tree, 720, 400
+Tree, 480, 400
+Tree, 370, 300
+Tree, 800, 500
+Tree, 850, 550
+Tree, 750, 450
+Tree, 700, 460
+Spawner, 800, 800
+loop: 500, 700, 40;Wall, x, 400
+loop: 400, 720, 40;Wall, 700, y
+loop: 0, 1600, 40;Wall,x, 0/Wall,x, 1600
+loop: 0, 1600, 40;Wall,0, y/Wall,1600, y

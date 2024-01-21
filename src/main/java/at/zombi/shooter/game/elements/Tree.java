@@ -3,6 +3,8 @@ package at.zombi.shooter.game.elements;
 import at.zombi.shooter.game.util.Hitbox;
 import at.zombi.shooter.game.util.Vector2D;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -31,10 +33,12 @@ public class Tree extends SolidGameObject {
     @Override
     public List<Node> render() {
         Rectangle treeModel = new Rectangle(getPosition().x - 20, getPosition().y - 20, 40, 40);
-        treeModel.setFill(Paint.valueOf("brown"));
-        Text text = new Text(getPosition().x - 15, getPosition().y -5, "Tree");
+        Image img = new Image("file:src/main/resources/at/zombi/shooter/scene/sprites/tree_sprite.gif");
+        treeModel.setFill(new ImagePattern(img));
+        //treeModel.setFill(Paint.valueOf("brown"));
+        /*Text text = new Text(getPosition().x - 15, getPosition().y -5, "Tree");
         text.setFill(Paint.valueOf("green"));
-        text.setFont(new Font(16));
-        return List.of(treeModel, text);
+        text.setFont(new Font(16));*/
+        return List.of(treeModel);
     }
 }

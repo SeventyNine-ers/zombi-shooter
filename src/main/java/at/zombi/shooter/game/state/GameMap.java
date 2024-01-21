@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 /**
  * Diese Klasse beinhaltet die Logik der GameMap, Zonen und Positionierung von Elementen
- *
+ * <p>
  * Ersteller: Alexander Doubrava
  * Datum: 06.01.2024
  */
@@ -27,21 +27,48 @@ public class GameMap {
 
         // TODO make a better map for game play
         setPlayer(new Player(
-                new Vector2D(300, 300)
+            new Vector2D(300, 300)
         ));
 
         add(new Tree(new Vector2D(250, 300)));
         add(new Tree(new Vector2D(300, 220)));
+
+        add(new Tree(new Vector2D(720, 400)));
+        add(new Tree(new Vector2D(480, 400)));
+        add(new Tree(new Vector2D(1000, 300)));
+        add(new Tree(new Vector2D(800, 500)));
+        add(new Tree(new Vector2D(850, 550)));
+        add(new Tree(new Vector2D(750, 450)));
+        add(new Tree(new Vector2D(700, 460)));
+        add(new Spawner(new Vector2D(800, 800)));
         add(new Zombie(new Vector2D(380, 280)));
         add(new Zombie(new Vector2D(380, 240)));
         add(new Zombie(new Vector2D(380, 260)));
         add(new Zombie(new Vector2D(380, 220)));
 
-        for (int x = 0; x <= 1600; x += 40) {
+        for(int x = 800; x <= 1000; x += 40) {
+            add(new Wall(new Vector2D(x, 400)));
+        }
+
+        for(int y = 400; y <= 720; y += 40) {
+            add(new Wall(new Vector2D(1000, y)));
+        }
+
+        for(int x = 400; x <=1040; x += 40){
+            add(new Wall(new Vector2D(x, 1300)));
+            add(new Wall(new Vector2D(x, 1500)));
+        }
+
+        for(int y = 500; y <= 1300; y += 40){
+            add(new Wall(new Vector2D(1041, y)));
+            add(new Wall(new Vector2D(1241, y)));
+        }
+
+        for(int x = 0; x <= 1600; x += 40) {
             add(new Wall(new Vector2D(x, 0)));
             add(new Wall(new Vector2D(x, 1600)));
         }
-        for (int y = 0; y <= 1600; y += 40) {
+        for(int y = 0; y <= 1600; y += 40) {
             add(new Wall(new Vector2D(0, y)));
             add(new Wall(new Vector2D(1600, y)));
         }
@@ -60,9 +87,9 @@ public class GameMap {
         allObejcts.add(player);
 
         return allObejcts.stream()
-                .filter(el -> el instanceof SolidGameObject)
-                .map(el -> (SolidGameObject) el)
-                .collect(Collectors.toUnmodifiableList());
+            .filter(el -> el instanceof SolidGameObject)
+            .map(el -> (SolidGameObject) el)
+            .collect(Collectors.toUnmodifiableList());
     }
 
     public Player getPlayer() {

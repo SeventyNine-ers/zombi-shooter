@@ -66,7 +66,7 @@ public class GameMainLoop {
                 .filter(solid -> solid instanceof Zombie)
                 .count();
         if (enemies < 40) {
-            gameStateManager.getGameMap().add(new Zombie(new Vector2D(800 + (Math.random() * 100) - 50, 800 + (Math.random() * 100) - 50)));
+            gameStateManager.getGameMap().add(new Zombie(new Vector2D(800 + (Math.random() * 100) - 50, 960 + (Math.random() * 100) - 50)));
         }
     }
 

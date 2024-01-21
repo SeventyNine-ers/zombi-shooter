@@ -5,6 +5,8 @@ import at.zombi.shooter.game.state.GameStateManager;
 import at.zombi.shooter.game.util.Hitbox;
 import at.zombi.shooter.game.util.Vector2D;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
@@ -76,9 +78,11 @@ public class Zombie extends Entity {
 
     @Override
     public List<Node> render() {
-        Rectangle playerModel = new Rectangle(getPosition().x - 20, getPosition().y - 20, 40, 40);
-        playerModel.setFill(Paint.valueOf("green"));
-        return List.of(playerModel);
+        Rectangle zombiModel = new Rectangle(getPosition().x - 20, getPosition().y - 20, 40, 40);
+        Image img = new Image("file:src/main/resources/at/zombi/shooter/scene/sprites/zombi_sprite.png");
+        zombiModel.setFill(new ImagePattern(img));
+        //zombiModel.setFill(Paint.valueOf("green"));
+        return List.of(zombiModel);
     }
 
     public int getAttackDamage() {
