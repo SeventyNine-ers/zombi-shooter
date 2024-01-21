@@ -1,5 +1,12 @@
 package at.zombi.shooter.game.state;
 
+/**
+ * Diese Klasse beinhaltet die Logik in Bezug auf die GameState, welche geändert wird.
+ * Hier wird auf die einzelnen States reagiert und eventuell resetted.
+ *
+ * Ersteller: Alexander Doubrava
+ * Datum: 06.01.2024
+ */
 public class GameStateManager {
     private static GameStateManager gameStateManager;
 

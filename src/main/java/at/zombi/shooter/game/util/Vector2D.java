@@ -1,6 +1,15 @@
 package at.zombi.shooter.game.util;
 
-// Vector2D implementation of Gunvir Singh Ranu from https://gist.github.com/gunvirranu/6816d65c0231981787ebefd3bdb61f98 at 06.01.2025
+/**
+ * Diese Klasse beinhaltet die Logik in Bezug auf Vektorimplementierung für die Positionierung von Elementen
+ * *
+ * *
+ * Vector2D implementation of Gunvir Singh Ranu from https://gist.github.com/gunvirranu/6816d65c0231981787ebefd3bdb61f98 am 06.01.2024
+ * *
+ * Ersteller: Alexander Doubrava
+ * Datum: 06.01.2024
+ */
+//
 public class Vector2D {
 
     public double x;

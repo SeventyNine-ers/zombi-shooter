@@ -7,13 +7,24 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
+/**
+ * Diese Klasse beinhaltet die Logik der GameMap, Zonen und Positionierung von Elementen
+ *
+ * Ersteller: Alexander Doubrava
+ * Datum: 06.01.2024
+ */
 public class GameMap {
     // TODO implement Zoning of the map so we don't check collisions with everything
+    // is also interesting for the Camera Positioning and rendering of objects within this zone
+    // bitwise zoning with e.g. xId, yId
+    // HashMap after zoning -> collisions at the zone with all zones around the current zone
     private Player player;
     private Map<Long, GameObject> gameMap = new ConcurrentHashMap<Long, GameObject>();
 
-
+    //TODO: Idee Maps über Textfiles laden --> einfaches Planning und Einbringen von verschiedenen Maps/Levels
     public void initMap() {
+
+
         // TODO make a better map for game play
         setPlayer(new Player(
                 new Vector2D(300, 300)

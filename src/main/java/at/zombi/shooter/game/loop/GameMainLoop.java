@@ -7,6 +7,13 @@ import at.zombi.shooter.game.state.GameStateManager;
 import at.zombi.shooter.game.util.Vector2D;
 import at.zombi.shooter.manager.ControlInputManager;
 
+/**
+ * Diese Klasse beinhaltet die Logik in Bezug auf die Game-Loop in der das Spiel agiert.
+ *
+ * Ersteller: Alexander Doubrava
+ * Datum: 06.01.2024
+ */
+
 public class GameMainLoop {
     public static final int TARGET_TICK_RATE = 60; // Game ticks per second
 
@@ -42,7 +49,7 @@ public class GameMainLoop {
                         .forEach(GameObject::update);
                 gameStateManager.updateTimeRemaining();
             } else {
-                sleepMillis(100);
+                sleepMillis(100);   //Für CPU
             }
             handleControlInputs();
 

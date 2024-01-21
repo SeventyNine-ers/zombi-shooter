@@ -3,6 +3,13 @@ package at.zombi.shooter.game.elements;
 
 import at.zombi.shooter.game.util.Hitbox;
 import at.zombi.shooter.game.util.Vector2D;
+/**
+ * Diese Klasse beinhaltet die abstrakte Klasse Entity welche SolidGameObject erweitert.
+ * Darin sind Elemente wie Healthpoints und Velocity in Form von Vektoren enthalten für Positionserkennung)
+ *
+ * Ersteller: Alexander Doubrava
+ * Datum: 06.01.2024
+ */
 
 public abstract class Entity extends SolidGameObject {
 

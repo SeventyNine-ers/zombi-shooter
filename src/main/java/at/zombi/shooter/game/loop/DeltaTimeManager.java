@@ -1,5 +1,11 @@
 package at.zombi.shooter.game.loop;
-//Im Pairprogramming gemacht: Alexander Doubrava, Patrick Kristof
+
+/**
+ * Diese Klasse beinhaltet die Logik des Zeitablaufs und Zeitupdates im Bezug auf das Spielerlebnis.
+ *
+ * Ersteller: Alexander Doubrava, Patrick Kristof
+ * Datum: 06.01.2024
+ */
 public class DeltaTimeManager {
     private static DeltaTimeManager deltaTimeManager;
 

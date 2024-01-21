@@ -3,7 +3,13 @@ package at.zombi.shooter.game.util;
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
 
-// For now our hitbox is only Rectangular
+/**
+ * Diese Klasse beinhaltet die Logik der Hitbox aller Elemente die eine besitzen.
+ * Zurzeit ist die Hitbox nur in Rechteckformat implementiert
+ * *
+ * Ersteller: Alexander Doubrava
+ * Datum: 06.01.2024
+ */
 public class Hitbox {
 
     private Vector2D topLeft;

@@ -8,6 +8,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+/**
+ * Diese Klasse beinhaltet die Logik der gerenderten Elemente im Blick der Spieler-Kamera.
+ * *
+ * Ersteller: Alexander Doubrava
+ * Datum: 06.01.2024
+ */
 
 public class GameRenderer {
 
@@ -22,6 +28,8 @@ public class GameRenderer {
         this.overlay = new Overlay();
         this.camera = new Camera(GameStateManager.getGameStateManager().getGameMap().getPlayer().getPosition());
     }
+
+    //TODO: Background before camera-element
 
     public void renderLoop(long nowInMillis) {
         List<Node> screenElements = Stream.of(getCamera().render(), getOverlay().render())

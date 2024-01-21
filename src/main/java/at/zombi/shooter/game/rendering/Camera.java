@@ -14,10 +14,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/*
+/**
  * The camera is an object on the map and normally follows the player
  * The camera mainly contains logic to adjust the absolut position of objects on the map
  * to the relativ position of the camera view and logic to avoid drawing objects out of sight
+ * *
+ * Ersteller: Alexander Doubrava
+ * Datum: 06.01.2024
  */
 public class Camera extends GameObject {
 
@@ -61,6 +64,8 @@ public class Camera extends GameObject {
                         if (newY > Application.SCREEN_HEIGHT + maxGameObjSize || newY + maxGameObjSize <= 0) {
                             return false;
                         }
+
+                    //TODO: Line wird zurzeit nicht benutzt
                     } else if (elem instanceof Line) {
                         Line line = (Line) elem;
 
@@ -106,6 +111,8 @@ public class Camera extends GameObject {
                         }
                         return false;
                     } else {
+                        //TODO: Instance of Text, z.B. Tree Text // Tree hat Rectangle und Text
+                        // Fallback mit Reflection - für Elemente die vorher nicht benutzt wurden
                         try {
                             var setX = elem.getClass().getMethod("setX", double.class);
                             var getX = elem.getClass().getMethod("getX");
@@ -118,6 +125,7 @@ public class Camera extends GameObject {
                             setX.invoke(elem, newX);
                             setY.invoke(elem, newY);
 
+                            //TODO: Refactoring, außerhalb des Screens wird nicht gerendet, spart Performance
                             // Filter only those visible on screen
                             if (newX > Application.SCREEN_WIDTH + maxGameObjSize || newX + maxGameObjSize <= 0) {
                                 return false;

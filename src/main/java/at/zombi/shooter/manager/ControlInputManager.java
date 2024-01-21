@@ -9,6 +9,14 @@ import javafx.scene.input.MouseEvent;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Diese Klasse beinhaltet die Logik der Bewegungssteuerung des Spiels.
+ * z.B.:
+ * *
+ * Ersteller: Alexander Doubrava
+ * Datum: 06.01.2024
+ */
+
 public class ControlInputManager {
     private static ControlInputManager controlInputManager;
 

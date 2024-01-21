@@ -10,6 +10,13 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.List;
 
+/**
+ * Diese Klasse beinhaltet die Logik in Bezug auf das Game-Element Zombie
+ *
+ * Ersteller: Alexander Doubrava
+ * Datum: 06.01.2024
+ */
+
 public class Zombie extends Entity {
 
     private final int attackDamage;

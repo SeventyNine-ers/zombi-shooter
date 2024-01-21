@@ -5,6 +5,14 @@ import at.zombi.shooter.game.rendering.GameRenderer;
 import at.zombi.shooter.game.state.GameStateManager;
 import javafx.scene.layout.Pane;
 //Im Pairprogramming gemacht: Alexander Doubrava, Patrick Kristof
+
+/**
+ * Diese Klasse beinhaltet die Hintergrundlogik der Zusammenarbeit zwischen Game-Element-Rendering
+ * und GameLoop! - Starten und Stoppen des Spiels
+ * *
+ * Ersteller: Alexander Doubrava, Patrick Kristof
+ * Datum: 06.01.2024
+ */
 public class GameRunManager {
     private static GameRunManager gameRunManager;
 

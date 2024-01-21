@@ -23,6 +23,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 //Im Pairprogramming implementiert: Alexander Doubrava, Patrick Kristof
+/**
+ * Diese Klasse beinhaltet die Elemente die im Game-Overlay zu sehen sind und mit denen man agieren kann
+ *
+ * Ersteller: Alexander Doubrava, Patrick Kristof
+ * Datum: 06.01.2024
+ */
 public class Overlay implements Renderable {
 
     private static final Rectangle TRANSPARENT_OVERLAY = new Rectangle(-1, -1, Application.SCREEN_WIDTH, Application.SCREEN_HEIGHT);
@@ -63,6 +69,7 @@ public class Overlay implements Renderable {
         return gameHeadsUpDisplay();
     }
 
+    //TODO: GameOverscreen besser einbauen?
     private List<Node> gameOverScreen(String text) {
         ControlInputManager controlInputManager = ControlInputManager.getControlInputManager();
         GameStateManager gameStateManager = GameStateManager.getGameStateManager();
@@ -83,6 +90,7 @@ public class Overlay implements Renderable {
         menuText.setFont(new Font("Calibri", 72));
         menuText.setFill(Paint.valueOf("white"));
 
+        //TODO: Logik im Renderloop, die nicht sein sollte - in Bezug auf Player (update und Co.?)
         Vector2D clickedAt = controlInputManager.hasLeftClicked();
         if (clickedAt != null) {
             Point2D clickedAtPoint = new Point2D(clickedAt.x, clickedAt.y);
