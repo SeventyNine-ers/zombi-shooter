@@ -11,9 +11,6 @@ public class GameMainLoop {
     private final Thread gameThread;
     private boolean running = false;
 
-    private long lastTime = 0;
-    private boolean writeScore;
-
     public GameMainLoop() {
         this.gameThread = new Thread(this::mainLoop);
         this.gameThread.setPriority(7);
@@ -23,7 +20,6 @@ public class GameMainLoop {
     public void startMainLoop() {
         this.running = true;
         this.gameThread.start();
-        writeScore = true;
     }
 
     public void stopMainLoop() {
@@ -42,8 +38,7 @@ public class GameMainLoop {
                 DeltaTimeManager.getDeltaTimeManager().update();
                 gameStateManager.getGameMap().getAllGameObjects()
                         .forEach(GameObject::update);
-                gameStateManager.updateTimeRemaining();
-                handlePlayerTimeScore(startTime);
+                gameStateManager.updateTimeRemainingAndPlayerScore();
             } else {
                 sleepMillis(100);
             }
@@ -52,8 +47,6 @@ public class GameMainLoop {
             checkIfGameIsWon();
             spawnNewEnemies();
             ensureMinLoopTime(startTime);
-
-
         }
     }
 
@@ -74,15 +67,12 @@ public class GameMainLoop {
         // Mark game as won if time is up
         if (gameStateManager.getTimeRemaining() <= 0) {
             if(gameStateManager.getState() == GameState.RUNNING) {
-                // Punkte Anrechnung für die überlebte Zeit
+                // Punkte Anrechnung für die ueberlebte Zeit
                 player.updateLivesScore(player.getHealth());
+                // Speichern des Scores bei gewonnenem Spiel
+                HighscoreEntry saveScore = new HighscoreEntry(PlayerData.getInstance().getPlayerName(), player.getScore());
+                HighScoreManager.addHighscoreEntry(saveScore, HighScoreManager.loadHighscores());
             }
-            // Speichern des Scores bei gewonnenem Spiel
-            if(writeScore){
-                SaveScore();
-                writeScore = false;
-            }
-
             gameStateManager.setState(GameState.WON);
         }
     }
@@ -109,25 +99,4 @@ public class GameMainLoop {
             Thread.sleep(millis);
         } catch (InterruptedException e) {}
     }
-    // Rechnet den Score für die überlebte Zeit aus
-    private void handlePlayerTimeScore(long currentTime){
-        GameStateManager gameStateManager = GameStateManager.getGameStateManager();
-        Player player = gameStateManager.getGameMap().getPlayer();
-
-        if(lastTime + 1000 <= currentTime){
-            player.updateTimeBasedScore();
-            lastTime = currentTime;
-        }
-    }
-    // Speichern des Scores
-    public static void SaveScore(){
-        GameStateManager gameStateManager = GameStateManager.getGameStateManager();
-        Player player = gameStateManager.getGameMap().getPlayer();
-
-        HighscoreEntry saveScore = new HighscoreEntry(PlayerData.getInstance().getPlayerName(), player.getScore());
-        HighScoreManager.addHighscoreEntry(saveScore, HighScoreManager.loadHighscores());
-    }
-
-
-
 }

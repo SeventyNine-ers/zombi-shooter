@@ -16,6 +16,10 @@
   </padding>
 
   <Label fx:id="gameTitle" minHeight="16" minWidth="69" text="Zombi-Shooter"/>
-  <Region VBox.vgrow="ALWAYS" maxHeight="90" />
-  <Region VBox.vgrow="ALWAYS" maxHeight="200" />
-</VBox>
+  <TextField fx:id="playerNameTextField" promptText="Enter Username here." maxWidth="400" maxHeight="40" style="-fx-background-color: lightgrey; -fx-text-fill: black"/>
+  <Region VBox.vgrow="ALWAYS" maxHeight="50" />
+  <Button fx:id="startButton" text="Start Game" minWidth="200" minHeight="40"/>
+  <Button fx:id="howToButton" text="HowTo?" minWidth="200" minHeight="40"/>
+  <Button fx:id="scoreboardButton" text="Scoreboard" minWidth="200" minHeight="40"/>
+  <Button fx:id="exitButton" text="Exit" minWidth="200" minHeight="40"/>
+  </VBox>

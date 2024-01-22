@@ -55,7 +55,7 @@ public class Overlay implements Renderable {
                     .collect(Collectors.toList());
         }
         if (GameState.WON.equals(gameStateManager.getState())) {
-            return Stream.of(gameHeadsUpDisplay(), gameOverScreen("You survived!"))
+            return Stream.of(gameHeadsUpDisplay(), gameOverScreen(" You survived!"))
                     .flatMap(Collection::stream)
                     .collect(Collectors.toList());
         }
@@ -70,7 +70,7 @@ public class Overlay implements Renderable {
         ControlInputManager controlInputManager = ControlInputManager.getControlInputManager();
         GameStateManager gameStateManager = GameStateManager.getGameStateManager();
 
-        Text title = new Text(Application.SCREEN_WIDTH / 2 - 180, Application.SCREEN_HEIGHT / 2 - 150, text);
+        Text title = new Text(Application.SCREEN_WIDTH / 2 - 330, Application.SCREEN_HEIGHT / 2 - 150, text);
         title.setFont(new Font("Calibri", 120));
         title.setFill(Paint.valueOf("white"));
 

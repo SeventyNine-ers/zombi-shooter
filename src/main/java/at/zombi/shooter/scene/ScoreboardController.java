@@ -16,9 +16,9 @@ import java.util.List;
 
 public class ScoreboardController {
     @FXML
-    private VBox ScoreboardVBox;
+    private VBox scoreboardVBox;
     @FXML
-    private Text ScoreboardText;
+    private Text scoreboardText;
 
     @FXML
     public void initialize() {
@@ -34,18 +34,18 @@ public class ScoreboardController {
             "9. " + highScores.get(8).getPlayerName() + "  Score: " + highScores.get(8).getScore() + "\n\n" +
             "10. " + highScores.get(9).getPlayerName() + "  Score: " + highScores.get(9).getScore() + "\n\n";
 
-        ScoreboardText.setFont(Font.font("Arial", FontWeight.BOLD, 22));
+        scoreboardText.setFont(Font.font("Arial", FontWeight.BOLD, 22));
 
         LinearGradient gradient = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE,
                 new Stop(0, Color.GREENYELLOW),
                 new Stop(1, Color.DARKGREEN)
         );
-        ScoreboardText.setFill(gradient);
-        ScoreboardText.setTextAlignment(TextAlignment.LEFT);
-        ScoreboardText.setText(ScoreboardContent);
+        scoreboardText.setFill(gradient);
+        scoreboardText.setTextAlignment(TextAlignment.LEFT);
+        scoreboardText.setText(ScoreboardContent);
 
         // Fuege Hintergundbild hinzu
-        ScoreboardVBox.setBackground(new Background(new BackgroundImage(
+        scoreboardVBox.setBackground(new Background(new BackgroundImage(
                 new Image(
                         String.valueOf(ScoreboardController.class.getResource(
                                 "backgrounds/Zombi_Background_Scoreboard.jpg"

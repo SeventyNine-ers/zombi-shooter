@@ -10,12 +10,12 @@
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="at.zombi.shooter.scene.ScoreboardController"
-      alignment="CENTER" fx:id="ScoreboardVBox"
+      alignment="CENTER" fx:id="scoreboardVBox"
       spacing="10">
 
   <children>
 
-    <Text fx:id="ScoreboardText">
+    <Text fx:id="scoreboardText">
     </Text>
     <Button text="Clear Scores" mnemonicParsing="false" minWidth="200" minHeight="40" onAction="#onClearScoresButtonClick"/>
     <Button text="Back to Menu" mnemonicParsing="false" minWidth="200" minHeight="40" onAction="#onMenuButtonClick"/>

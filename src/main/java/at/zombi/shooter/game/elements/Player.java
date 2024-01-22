@@ -5,9 +5,9 @@ import at.zombi.shooter.game.loop.DeltaTimeManager;
 import at.zombi.shooter.game.loop.GameMainLoop;
 import at.zombi.shooter.game.state.GameState;
 import at.zombi.shooter.game.state.GameStateManager;
-import at.zombi.shooter.game.util.Hitbox;
-import at.zombi.shooter.game.util.Vector2D;
+import at.zombi.shooter.game.util.*;
 import at.zombi.shooter.manager.ControlInputManager;
+import at.zombi.shooter.manager.HighScoreManager;
 import javafx.scene.Node;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.*;
@@ -28,12 +28,12 @@ public class Player extends Entity {
     public void update() {
         handleShot();
         setVelocity(getMovementVector());
-
         processCollisionAndApplyMovement();
 
         if (getHealth() <= 0) {
             // Speicher den Score beim verlieren des Spiels
-            GameMainLoop.SaveScore();
+            HighscoreEntry saveScore = new HighscoreEntry(PlayerData.getInstance().getPlayerName(), this.getScore());
+            HighScoreManager.addHighscoreEntry(saveScore, HighScoreManager.loadHighscores());
 
             GameStateManager.getGameStateManager().setState(GameState.LOST);
         }
@@ -172,5 +172,4 @@ public class Player extends Entity {
         int lifeBonus = 50;
         score += (int) ((remainingLives/100) * lifeBonus);
     }
-
 }

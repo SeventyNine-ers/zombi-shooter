@@ -24,16 +24,15 @@ public class MainMenuController {
     @FXML
     private Label gameTitle;
     @FXML
-    private Button startButton = new Button();
+    private Button startButton;
     @FXML
-    private Button howToButton = new Button();
+    private Button howToButton;
     @FXML
-    private Button scoreboardButton = new Button();
+    private Button scoreboardButton;
     @FXML
-    private Button exitButton = new Button();
+    private Button exitButton;
     @FXML
-    private TextField playerNameTextField = new TextField();
-    Region spacer1 = new Region();
+    private TextField playerNameTextField;
 
 
     @FXML
@@ -59,26 +58,14 @@ public class MainMenuController {
                 BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT
         )));
-        VBox.setVgrow(spacer1, Priority.ALWAYS);
 
         // Falls schon eine Name gespeichert ist, gib ihn im Textfeld aus
         playerNameTextField.setText(PlayerData.getInstance().getPlayerName());
-        //Speichere den String im Textfeld
+        // Speichere den String im Textfeld
         playerNameTextField.setOnAction(e -> {
             PlayerData.getInstance().setPlayerName(playerNameTextField.getText());
         });
 
-        //Basic Eigenschaften vom Textfeld
-        playerNameTextField.setPromptText("Enter Username here.");
-        playerNameTextField.setMaxWidth(400);
-        playerNameTextField.setMaxHeight(40);
-        playerNameTextField.setStyle("-fx-background-color: lightgrey; -fx-text-fill: black;");
-        titleVBox.getChildren().add(2, playerNameTextField);
-
-        // Start Button erstellen
-        startButton.setText("Start Game");
-        startButton.setMinWidth(200);
-        startButton.setMinHeight(40);
         startButton.setOnAction(e -> {
             if(playerNameTextField.getText() != null) {
                 PlayerData.getInstance().setPlayerName(playerNameTextField.getText());
@@ -92,13 +79,7 @@ public class MainMenuController {
                 throw new RuntimeException(ex);
             }
         });
-        titleVBox.getChildren().add(3, spacer1);
-        titleVBox.getChildren().add(4, startButton);
 
-        // HowToButton erstellen
-        howToButton.setText("How To?");
-        howToButton.setMinWidth(200);
-        howToButton.setMinHeight(40);
         howToButton.setOnAction(e -> {
             if(playerNameTextField.getText() != null) {
                 PlayerData.getInstance().setPlayerName(playerNameTextField.getText());
@@ -112,12 +93,7 @@ public class MainMenuController {
                 throw new RuntimeException(ex);
             }
         });
-        titleVBox.getChildren().add(5, howToButton);
 
-        // Scoreboard Button erstellen
-        scoreboardButton.setText("Scoreboard");
-        scoreboardButton.setMinWidth(200);
-        scoreboardButton.setMinHeight(40);
         scoreboardButton.setOnAction(e -> {
             if(playerNameTextField.getText() != null) {
                 PlayerData.getInstance().setPlayerName(playerNameTextField.getText());
@@ -131,19 +107,11 @@ public class MainMenuController {
                 throw new RuntimeException(ex);
             }
         });
-        titleVBox.getChildren().add(6, scoreboardButton);
 
-        // Exit Button erstellen
-        exitButton.setText("Exit");
-        exitButton.setMinWidth(200);
-        exitButton.setMinHeight(40);
         exitButton.setOnAction(e -> {
             onExitButtonClick();
         });
-        titleVBox.getChildren().add(7, exitButton);
     }
-    //ActionEvent actionEvent
-
     @FXML
     public void onStartButtonClick() throws IOException {
         SceneManager.getSceneManager().showGameScene();
