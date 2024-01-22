@@ -30,9 +30,11 @@ public class GameMap {
             new Vector2D(300, 300)
         ));
 
+        add(new Spawner(new Vector2D(800, 800)));
+        add(new Spawner(new Vector2D(1450, 500)));
+
         add(new Tree(new Vector2D(250, 300)));
         add(new Tree(new Vector2D(300, 220)));
-
         add(new Tree(new Vector2D(720, 400)));
         add(new Tree(new Vector2D(480, 400)));
         add(new Tree(new Vector2D(1000, 300)));
@@ -40,7 +42,8 @@ public class GameMap {
         add(new Tree(new Vector2D(850, 550)));
         add(new Tree(new Vector2D(750, 450)));
         add(new Tree(new Vector2D(700, 460)));
-        add(new Spawner(new Vector2D(800, 800)));
+        add(new Tree(new Vector2D(1550, 1550)));
+
         add(new Zombie(new Vector2D(380, 280)));
         add(new Zombie(new Vector2D(380, 240)));
         add(new Zombie(new Vector2D(380, 260)));
@@ -71,6 +74,34 @@ public class GameMap {
         for(int y = 0; y <= 1600; y += 40) {
             add(new Wall(new Vector2D(0, y)));
             add(new Wall(new Vector2D(1600, y)));
+        }
+
+        add(new Wall(new Vector2D(200, 800)));
+        add(new Wall(new Vector2D(300, 800)));
+        add(new Wall(new Vector2D(200, 1320)));
+        add(new Wall(new Vector2D(300, 1320)));
+
+        for(int x = 80; x <= 200; x += 40){
+            add(new Wall(new Vector2D(x, 841)));
+            add(new Wall(new Vector2D(x, 1281)));
+        }
+
+        for(int x = 300; x <= 420; x += 40){
+            add(new Wall(new Vector2D(x, 841)));
+            add(new Wall(new Vector2D(x, 1281)));
+        }
+
+        for(int y = 840; y <= 1240; y += 40){
+            add(new Wall(new Vector2D(80, y)));
+            add(new Wall(new Vector2D(420, y)));
+        }
+
+        int yCoordinatesForFlower = 80;
+        for(int xCoordinatesForFlower = 100; xCoordinatesForFlower <= 1500; xCoordinatesForFlower+= 50){
+
+            add(new Flower(new Vector2D(xCoordinatesForFlower, yCoordinatesForFlower)));
+            yCoordinatesForFlower += 80;
+            add(new Flower(new Vector2D(xCoordinatesForFlower + 300, yCoordinatesForFlower)));
         }
 
     }

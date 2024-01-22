@@ -1,9 +1,11 @@
 package at.zombi.shooter.game.elements;
 
+import at.zombi.shooter.Application;
 import at.zombi.shooter.game.loop.DeltaTimeManager;
 import at.zombi.shooter.game.state.GameStateManager;
 import at.zombi.shooter.game.util.Hitbox;
 import at.zombi.shooter.game.util.Vector2D;
+import at.zombi.shooter.scene.MainMenuController;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
@@ -82,9 +84,14 @@ public class Zombie extends Entity {
     @Override
     public List<Node> render() {
         Rectangle zombiModel = new Rectangle(getPosition().x - 20, getPosition().y - 20, 40, 40);
-        Image img = new Image("file:src/main/resources/at/zombi/shooter/scene/sprites/zombi_sprite.png");
-        zombiModel.setFill(new ImagePattern(img));
-        //zombiModel.setFill(Paint.valueOf("green"));
+        final double radToDeg = (180 / 3.1415926);
+        zombiModel.setRotate(getVelocity().getAngle() * radToDeg);
+
+        zombiModel.setFill(new ImagePattern(new Image(
+            String.valueOf(MainMenuController.class.getResource(
+                "sprites/zombi_sprite.png"
+            )))));
+
         return List.of(zombiModel);
     }
 

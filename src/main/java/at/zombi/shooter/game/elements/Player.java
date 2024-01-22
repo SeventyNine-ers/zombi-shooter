@@ -8,7 +8,10 @@ import at.zombi.shooter.game.state.GameStateManager;
 import at.zombi.shooter.game.util.*;
 import at.zombi.shooter.manager.ControlInputManager;
 import at.zombi.shooter.manager.HighScoreManager;
+import at.zombi.shooter.scene.MainMenuController;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.*;
 
@@ -124,12 +127,16 @@ public class Player extends Entity {
     public List<Node> render() {
         //Rectangle playerModel = new Rectangle(getPosition().x - 20, getPosition().y - 20, 40, 40);
         Polygon playerModel = new Polygon(getPosition().x, getPosition().y - 20, getPosition().x + 20, getPosition().y + 20, getPosition().x - 20, getPosition().y + 20);
+        playerModel.setFill(new ImagePattern(new Image(
+            String.valueOf(MainMenuController.class.getResource(
+                "sprites/player_sprite.png"
+            )))));
 
         // Let player blink after zombie hit for 5 sek
         if (System.currentTimeMillis() - lastZombieHit < (DAMAGE_IMMUNITY_SEC * 1000) && (System.currentTimeMillis() / 100) * 100 % 200 == 0) {
-            playerModel.setFill(Paint.valueOf("grey"));
+            playerModel.setVisible(false);
         } else {
-            playerModel.setFill(Paint.valueOf("orange"));
+            playerModel.setVisible(true);
         }
 
         ControlInputManager controlInputManager = ControlInputManager.getControlInputManager();

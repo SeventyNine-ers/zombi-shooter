@@ -4,7 +4,10 @@ import at.zombi.shooter.game.loop.DeltaTimeManager;
 import at.zombi.shooter.game.state.GameStateManager;
 import at.zombi.shooter.game.util.Hitbox;
 import at.zombi.shooter.game.util.Vector2D;
+import at.zombi.shooter.scene.MainMenuController;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
@@ -69,7 +72,11 @@ public class Bullet extends Entity {
         Rectangle shot = new Rectangle(getPosition().x - 10, getPosition().y - 5, 20, 10);
         final double radToDeg = (180 / 3.1415926);
         shot.setRotate(getVelocity().getAngle() * radToDeg);
-        shot.setFill(Paint.valueOf("blue"));
+        shot.setFill(new ImagePattern(new Image(
+            String.valueOf(MainMenuController.class.getResource(
+                "sprites/bullet_sprite.png"
+            )))));
+
         return List.of(shot);
     }
 }

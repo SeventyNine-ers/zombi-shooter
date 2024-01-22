@@ -2,6 +2,7 @@ package at.zombi.shooter.game.elements;
 
 import at.zombi.shooter.game.util.Hitbox;
 import at.zombi.shooter.game.util.Vector2D;
+import at.zombi.shooter.scene.MainMenuController;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
@@ -31,9 +32,11 @@ public class Wall extends SolidGameObject {
     @Override
     public List<Node> render() {
         Rectangle wallModel = new Rectangle(getPosition().x - 20, getPosition().y - 20, 40, 40);
-        Image img = new Image("file:src/main/resources/at/zombi/shooter/scene/sprites/wall_sprite.png");
-        wallModel.setFill(new ImagePattern(img));
-        //wallModel.setFill(Paint.valueOf("grey"));
+        wallModel.setFill(new ImagePattern(new Image(
+            String.valueOf(MainMenuController.class.getResource(
+                "sprites/wall_sprite.png"
+            )))));
+
         return List.of(wallModel);
     }
 }
