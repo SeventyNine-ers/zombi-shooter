@@ -25,6 +25,10 @@ import java.util.List;
 
 public class Player extends Entity {
 
+    private static final ImagePattern PLAYER_SPRITE = new ImagePattern(new Image(
+        String.valueOf(MainMenuController.class.getResource(
+            "sprites/player_sprite.png"
+        ))));
     private static final int DAMAGE_IMMUNITY_SEC = 3;
     private long lastZombieHit = 0;
     private int score = 0;
@@ -127,10 +131,7 @@ public class Player extends Entity {
     public List<Node> render() {
         //Rectangle playerModel = new Rectangle(getPosition().x - 20, getPosition().y - 20, 40, 40);
         Polygon playerModel = new Polygon(getPosition().x, getPosition().y - 20, getPosition().x + 20, getPosition().y + 20, getPosition().x - 20, getPosition().y + 20);
-        playerModel.setFill(new ImagePattern(new Image(
-            String.valueOf(MainMenuController.class.getResource(
-                "sprites/player_sprite.png"
-            )))));
+        playerModel.setFill(PLAYER_SPRITE);
 
         // Let player blink after zombie hit for 5 sek
         if (System.currentTimeMillis() - lastZombieHit < (DAMAGE_IMMUNITY_SEC * 1000) && (System.currentTimeMillis() / 100) * 100 % 200 == 0) {

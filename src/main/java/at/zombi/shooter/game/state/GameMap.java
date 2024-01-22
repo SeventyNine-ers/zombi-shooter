@@ -24,6 +24,9 @@ public class GameMap {
     //TODO: Idee Maps über Textfiles laden --> einfaches Planning und Einbringen von verschiedenen Maps/Levels
     public void initMap() {
 
+        for(int i = 0; i < 100; i++){
+            add(new Flower(new Vector2D((Math.random() * 1560) + 100, (Math.random() * 1560) + 100)));
+        }
 
         // TODO make a better map for game play
         setPlayer(new Player(
@@ -94,14 +97,6 @@ public class GameMap {
         for(int y = 840; y <= 1240; y += 40){
             add(new Wall(new Vector2D(80, y)));
             add(new Wall(new Vector2D(420, y)));
-        }
-
-        int yCoordinatesForFlower = 80;
-        for(int xCoordinatesForFlower = 100; xCoordinatesForFlower <= 1500; xCoordinatesForFlower+= 50){
-
-            add(new Flower(new Vector2D(xCoordinatesForFlower, yCoordinatesForFlower)));
-            yCoordinatesForFlower += 80;
-            add(new Flower(new Vector2D(xCoordinatesForFlower + 300, yCoordinatesForFlower)));
         }
 
     }

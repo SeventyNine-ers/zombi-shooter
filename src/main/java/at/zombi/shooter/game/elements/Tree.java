@@ -22,6 +22,11 @@ import java.util.List;
 
 public class Tree extends SolidGameObject {
 
+    private static final ImagePattern FLOWER_SPRITE = new ImagePattern(new Image(
+        String.valueOf(MainMenuController.class.getResource(
+        "sprites/tree_sprite.gif"
+    ))));
+
     public Tree(Vector2D position) {
         super(position, new Hitbox(new Vector2D(-21, -21), new Vector2D(21, 21)));
     }
@@ -34,10 +39,7 @@ public class Tree extends SolidGameObject {
     @Override
     public List<Node> render() {
         Rectangle treeModel = new Rectangle(getPosition().x - 20, getPosition().y - 20, 40, 40);
-        treeModel.setFill(new ImagePattern(new Image(
-            String.valueOf(MainMenuController.class.getResource(
-                "sprites/tree_sprite.gif"
-            )))));
+        treeModel.setFill(FLOWER_SPRITE);
 
         return List.of(treeModel);
     }

@@ -22,6 +22,10 @@ import java.util.List;
 
 public class Bullet extends Entity {
 
+    private static final ImagePattern BULLET_SPRITE = new ImagePattern(new Image(
+        String.valueOf(MainMenuController.class.getResource(
+        "sprites/bullet_sprite.png"
+    ))));
     private final int attackDamage;
 
     public Bullet(Vector2D position, Vector2D velocity) {
@@ -72,10 +76,7 @@ public class Bullet extends Entity {
         Rectangle shot = new Rectangle(getPosition().x - 10, getPosition().y - 5, 20, 10);
         final double radToDeg = (180 / 3.1415926);
         shot.setRotate(getVelocity().getAngle() * radToDeg);
-        shot.setFill(new ImagePattern(new Image(
-            String.valueOf(MainMenuController.class.getResource(
-                "sprites/bullet_sprite.png"
-            )))));
+        shot.setFill(BULLET_SPRITE);
 
         return List.of(shot);
     }

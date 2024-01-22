@@ -20,6 +20,11 @@ import java.util.List;
  */
 public class Wall extends SolidGameObject {
 
+    private static final ImagePattern WALL_SPRITE = new ImagePattern(new Image(
+        String.valueOf(MainMenuController.class.getResource(
+        "sprites/wall_sprite.png"
+    ))));
+
     public Wall(Vector2D position) {
         super(position, new Hitbox(new Vector2D(-21, -21), new Vector2D(21, 21)));
     }
@@ -32,10 +37,7 @@ public class Wall extends SolidGameObject {
     @Override
     public List<Node> render() {
         Rectangle wallModel = new Rectangle(getPosition().x - 20, getPosition().y - 20, 40, 40);
-        wallModel.setFill(new ImagePattern(new Image(
-            String.valueOf(MainMenuController.class.getResource(
-                "sprites/wall_sprite.png"
-            )))));
+        wallModel.setFill(WALL_SPRITE);
 
         return List.of(wallModel);
     }

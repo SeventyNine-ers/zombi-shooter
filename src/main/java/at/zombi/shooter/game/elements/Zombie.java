@@ -22,6 +22,10 @@ import java.util.List;
  */
 
 public class Zombie extends Entity {
+    private static final ImagePattern ZOMBI_SPRITE = new ImagePattern(new Image(
+        String.valueOf(MainMenuController.class.getResource(
+            "sprites/zombi_sprite.png"
+        ))));
 
     private final int attackDamage;
 
@@ -87,10 +91,7 @@ public class Zombie extends Entity {
         final double radToDeg = (180 / 3.1415926);
         zombiModel.setRotate(getVelocity().getAngle() * radToDeg);
 
-        zombiModel.setFill(new ImagePattern(new Image(
-            String.valueOf(MainMenuController.class.getResource(
-                "sprites/zombi_sprite.png"
-            )))));
+        zombiModel.setFill(ZOMBI_SPRITE);
 
         return List.of(zombiModel);
     }

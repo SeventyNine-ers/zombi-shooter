@@ -10,6 +10,11 @@ import javafx.scene.shape.Rectangle;
 import java.util.List;
 
 public class Flower extends GameObject{
+
+    private static final ImagePattern FLOWER_SPRITE = new ImagePattern(new Image(
+        String.valueOf(MainMenuController.class.getResource(
+        "sprites/flower_sprite.png"
+    ))));
     public Flower(Vector2D position) {
         super(position);
     }
@@ -18,10 +23,7 @@ public class Flower extends GameObject{
     public List<Node> render() {
         Rectangle flowerModel = new Rectangle(getPosition().x - 10, getPosition().y - 10, 20, 20);
 
-        flowerModel.setFill(new ImagePattern(new Image(
-            String.valueOf(MainMenuController.class.getResource(
-                "sprites/flower_sprite.png"
-            )))));
+        flowerModel.setFill(FLOWER_SPRITE);
 
         return List.of(flowerModel);
     }
