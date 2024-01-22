@@ -2,11 +2,12 @@ package at.zombi.shooter.game.elements;
 
 import at.zombi.shooter.Application;
 import at.zombi.shooter.game.loop.DeltaTimeManager;
+import at.zombi.shooter.game.loop.GameMainLoop;
 import at.zombi.shooter.game.state.GameState;
 import at.zombi.shooter.game.state.GameStateManager;
-import at.zombi.shooter.game.util.Hitbox;
-import at.zombi.shooter.game.util.Vector2D;
+import at.zombi.shooter.game.util.*;
 import at.zombi.shooter.manager.ControlInputManager;
+import at.zombi.shooter.manager.HighScoreManager;
 import javafx.scene.Node;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.*;
@@ -23,6 +24,7 @@ public class Player extends Entity {
 
     private static final int DAMAGE_IMMUNITY_SEC = 3;
     private long lastZombieHit = 0;
+    private int score = 0;
 
     public Player(Vector2D position) {
         super(position, new Hitbox(new Vector2D(-20, -20), new Vector2D(20, 20)), 300);
@@ -32,10 +34,13 @@ public class Player extends Entity {
     public void update() {
         handleShot();
         setVelocity(getMovementVector());
-
         processCollisionAndApplyMovement();
 
         if (getHealth() <= 0) {
+            // Speicher den Score beim verlieren des Spiels
+            HighscoreEntry saveScore = new HighscoreEntry(PlayerData.getInstance().getPlayerName(), this.getScore());
+            HighScoreManager.addHighscoreEntry(saveScore, HighScoreManager.loadHighscores());
+
             GameStateManager.getGameStateManager().setState(GameState.LOST);
         }
     }
@@ -154,5 +159,23 @@ public class Player extends Entity {
 
     public void setLastZombieHit(long lastZombieHit) {
         this.lastZombieHit = lastZombieHit;
+    }
+
+    // Methoden zur Verwaltung der Punkte
+    public int getScore() {
+        return score;
+    }
+    public void updateTimeBasedScore() {
+        score += 1;
+    }
+    public void updateKillScore() {
+        score += 10;
+    }
+    public void updateMissScore() {
+        score -= 5;
+    }
+    public void updateLivesScore(long remainingLives) {
+        int lifeBonus = 50;
+        score += (int) ((remainingLives/100) * lifeBonus);
     }
 }

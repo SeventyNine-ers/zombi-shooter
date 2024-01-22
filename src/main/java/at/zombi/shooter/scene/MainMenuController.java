@@ -1,10 +1,14 @@
 package at.zombi.shooter.scene;
 
 import at.zombi.shooter.Application;
+import at.zombi.shooter.game.util.PlayerData;
 import at.zombi.shooter.manager.SceneManager;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.geometry.Insets;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
@@ -19,6 +23,17 @@ public class MainMenuController {
     private VBox titleVBox;
     @FXML
     private Label gameTitle;
+    @FXML
+    private Button startButton;
+    @FXML
+    private Button howToButton;
+    @FXML
+    private Button scoreboardButton;
+    @FXML
+    private Button exitButton;
+    @FXML
+    private TextField playerNameTextField;
+
 
     @FXML
     public void initialize() {
@@ -44,20 +59,77 @@ public class MainMenuController {
                 BackgroundSize.DEFAULT
         )));
 
-    }
+        // Falls schon eine Name gespeichert ist, gib ihn im Textfeld aus
+        playerNameTextField.setText(PlayerData.getInstance().getPlayerName());
+        // Speichere den String im Textfeld
+        playerNameTextField.setOnAction(e -> {
+            PlayerData.getInstance().setPlayerName(playerNameTextField.getText());
+        });
 
+        startButton.setOnAction(e -> {
+            if(playerNameTextField.getText() != null) {
+                PlayerData.getInstance().setPlayerName(playerNameTextField.getText());
+            }
+            else{
+                PlayerData.getInstance().setPlayerName("No name entered");
+            }
+            try {
+                onStartButtonClick();
+            } catch(IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        howToButton.setOnAction(e -> {
+            if(playerNameTextField.getText() != null) {
+                PlayerData.getInstance().setPlayerName(playerNameTextField.getText());
+            }
+            else{
+                PlayerData.getInstance().setPlayerName("No name entered");
+            }
+            try {
+                onHowToButtonClick();
+            } catch(IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        scoreboardButton.setOnAction(e -> {
+            if(playerNameTextField.getText() != null) {
+                PlayerData.getInstance().setPlayerName(playerNameTextField.getText());
+            }
+            else{
+                PlayerData.getInstance().setPlayerName("No name entered");
+            }
+            try {
+                onScoreboardButtonClick();
+            } catch(IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        exitButton.setOnAction(e -> {
+            onExitButtonClick();
+        });
+    }
     @FXML
-    public void onStartButtonClick(ActionEvent actionEvent) throws IOException {
+    public void onStartButtonClick() throws IOException {
         SceneManager.getSceneManager().showGameScene();
     }
 
     @FXML
-    public void onHowToButtonClick(ActionEvent actionEvent) throws IOException {
+    public void onHowToButtonClick() throws IOException {
         SceneManager.getSceneManager().showHowTo();
+
     }
 
     @FXML
-    public void onExitButtonClick(ActionEvent actionEvent) {
+    public void onScoreboardButtonClick() throws IOException {
+        SceneManager.getSceneManager().showScoreboard();
+    }
+
+    @FXML
+    public void onExitButtonClick() {
         System.exit(1);
     }
 }

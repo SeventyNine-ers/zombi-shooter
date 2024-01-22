@@ -1,11 +1,10 @@
 package at.zombi.shooter.game.loop;
 
-import at.zombi.shooter.game.elements.GameObject;
-import at.zombi.shooter.game.elements.Zombie;
-import at.zombi.shooter.game.state.GameState;
-import at.zombi.shooter.game.state.GameStateManager;
-import at.zombi.shooter.game.util.Vector2D;
+import at.zombi.shooter.game.elements.*;
+import at.zombi.shooter.game.state.*;
+import at.zombi.shooter.game.util.*;
 import at.zombi.shooter.manager.ControlInputManager;
+import at.zombi.shooter.manager.HighScoreManager;
 
 /**
  * Diese Klasse beinhaltet die Logik in Bezug auf die Game-Loop in der das Spiel agiert.
@@ -16,7 +15,6 @@ import at.zombi.shooter.manager.ControlInputManager;
 
 public class GameMainLoop {
     public static final int TARGET_TICK_RATE = 60; // Game ticks per second
-
     private final Thread gameThread;
     private boolean running = false;
 
@@ -47,7 +45,7 @@ public class GameMainLoop {
                 DeltaTimeManager.getDeltaTimeManager().update();
                 gameStateManager.getGameMap().getAllGameObjects()
                         .forEach(GameObject::update);
-                gameStateManager.updateTimeRemaining();
+                gameStateManager.updateTimeRemainingAndPlayerScore();
             } else {
                 sleepMillis(100);   //Für CPU
             }
@@ -72,8 +70,16 @@ public class GameMainLoop {
 
     private void checkIfGameIsWon() {
         GameStateManager gameStateManager = GameStateManager.getGameStateManager();
-        // Marke game as won if time is up
+        Player player = gameStateManager.getGameMap().getPlayer();
+        // Mark game as won if time is up
         if (gameStateManager.getTimeRemaining() <= 0) {
+            if(gameStateManager.getState() == GameState.RUNNING) {
+                // Punkte Anrechnung für die ueberlebte Zeit
+                player.updateLivesScore(player.getHealth());
+                // Speichern des Scores bei gewonnenem Spiel
+                HighscoreEntry saveScore = new HighscoreEntry(PlayerData.getInstance().getPlayerName(), player.getScore());
+                HighScoreManager.addHighscoreEntry(saveScore, HighScoreManager.loadHighscores());
+            }
             gameStateManager.setState(GameState.WON);
         }
     }

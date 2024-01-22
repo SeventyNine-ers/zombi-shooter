@@ -19,8 +19,6 @@
   <children>
 
     <Text fx:id="howToText">
-      Hier steht deine Anleitung.
-      Du kannst diesen Text entsprechend anpassen.
     </Text>
 
 

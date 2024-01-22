@@ -46,6 +46,16 @@ public class SceneManager {
         anchorSceneAndAdjustSize(scene);
     }
 
+    public void showScoreboard() throws IOException {
+        GameRunManager.getGameRunManager().stopGame();
+        FXMLLoader fxmlLoader = new FXMLLoader(HowToController.class.getResource("scoreboard.fxml"));
+        getMainPane().getChildren().clear();
+        Node scene = fxmlLoader.load();
+        getMainPane().getChildren().add(scene);
+        anchorSceneAndAdjustSize(scene);
+    }
+
+
     public void showGameScene() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(GameSceneController.class.getResource("game-scene.fxml"));
         getMainPane().getChildren().clear();

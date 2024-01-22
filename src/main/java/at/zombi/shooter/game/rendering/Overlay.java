@@ -56,12 +56,12 @@ public class Overlay implements Renderable {
                     .collect(Collectors.toList());
         }
         if (GameState.LOST.equals(gameStateManager.getState())) {
-            return Stream.of(gameHeadsUpDisplay(), gameOverScreen("You lose"))
+            return Stream.of(gameHeadsUpDisplay(), gameOverScreen("You are Dead!"))
                     .flatMap(Collection::stream)
                     .collect(Collectors.toList());
         }
         if (GameState.WON.equals(gameStateManager.getState())) {
-            return Stream.of(gameHeadsUpDisplay(), gameOverScreen("You win!"))
+            return Stream.of(gameHeadsUpDisplay(), gameOverScreen(" You survived!"))
                     .flatMap(Collection::stream)
                     .collect(Collectors.toList());
         }
@@ -69,12 +69,14 @@ public class Overlay implements Renderable {
         return gameHeadsUpDisplay();
     }
 
-    //TODO: GameOverscreen besser einbauen?
-    private List<Node> gameOverScreen(String text) {
+    private List<Node>
+
+
+    gameOverScreen(String text) {
         ControlInputManager controlInputManager = ControlInputManager.getControlInputManager();
         GameStateManager gameStateManager = GameStateManager.getGameStateManager();
 
-        Text title = new Text(Application.SCREEN_WIDTH / 2 - 180, Application.SCREEN_HEIGHT / 2 - 150, text);
+        Text title = new Text(Application.SCREEN_WIDTH / 2 - 330, Application.SCREEN_HEIGHT / 2 - 150, text);
         title.setFont(new Font("Calibri", 120));
         title.setFill(Paint.valueOf("white"));
 
@@ -90,7 +92,6 @@ public class Overlay implements Renderable {
         menuText.setFont(new Font("Calibri", 72));
         menuText.setFill(Paint.valueOf("white"));
 
-        //TODO: Logik im Renderloop, die nicht sein sollte - in Bezug auf Player (update und Co.?)
         Vector2D clickedAt = controlInputManager.hasLeftClicked();
         if (clickedAt != null) {
             Point2D clickedAtPoint = new Point2D(clickedAt.x, clickedAt.y);
@@ -152,9 +153,10 @@ public class Overlay implements Renderable {
 
         List<Node> gameOverlay = new ArrayList<>();
         Text deltaTime = new Text(10, Application.SCREEN_HEIGHT - 10, "DeltaTime: " + DeltaTimeManager.getDeltaTimeManager().getDeltaTime());
-        gameOverlay.add(deltaTime);
+        //gameOverlay.add(deltaTime);
 
         final long playerHealth = gameStateManager.getGameMap().getPlayer().getHealth();
+        final long playerScore = gameStateManager.getGameMap().getPlayer().getScore();
         for (long i = 0; i < playerHealth; i += 100) {
             Rectangle health = new Rectangle(10 + (i / 2d), 10, 40, 40);
             health.setFill(Paint.valueOf("red"));
@@ -170,6 +172,10 @@ public class Overlay implements Renderable {
         gameTimer.setFont(new Font("Calibri", 64));
         gameOverlay.add(gameTimer);
 
+        // Zeigt den Punktestand von der aktuelle Runden zentriert oben an.
+        Text DisplayedPlayerScore = new Text(Application.SCREEN_WIDTH - 750, 50, "Score: " + playerScore);
+        DisplayedPlayerScore.setFont(new Font("Calibri", 64));
+        gameOverlay.add(DisplayedPlayerScore);
         return gameOverlay;
     }
 
