@@ -45,7 +45,7 @@ public class Camera extends GameObject {
                 .flatMap(gmObj -> gmObj.render().stream())
                 // TODO Refactor this to be less ugly....
                 .filter(elem -> {
-                    int maxGameObjSize = 100; // We don't expect an gameObject to be larger than this for simplicity reasons
+                    int maxGameObjSize = 150; // We don't expect an gameObject to be larger than this for simplicity reasons
 
                     if (elem instanceof Rectangle) {
                         Rectangle rect = (Rectangle) elem;
