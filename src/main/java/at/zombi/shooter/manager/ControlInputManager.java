@@ -10,11 +10,10 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Diese Klasse beinhaltet die Logik der Bewegungssteuerung des Spiels.
- * z.B.:
- * *
- * Ersteller: Alexander Doubrava
- * Datum: 06.01.2024
+ * This class contains the logic behind the users inputs, e.g. mouse-click, WASD, etc.
+ * <p>
+ * Author: Alexander Doubrava
+ * Date: 06.01.2024
  */
 
 public class ControlInputManager {

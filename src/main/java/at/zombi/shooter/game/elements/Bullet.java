@@ -14,18 +14,17 @@ import javafx.scene.shape.Rectangle;
 import java.util.List;
 
 /**
- * Diese Klasse beinhaltet die Logik in Bezug auf das Game-Element Kugel (eines Gewehrs/Pistole)
- * <p>
- * Ersteller: Alexander Doubrava
- * Datum: 06.01.2024
+ * This class contains the logic for the gameObject Bullet
+ * Author: Alexander Doubrava
+ * Date: 06.01.2024
  */
 
 public class Bullet extends Entity {
 
     private static final ImagePattern BULLET_SPRITE = new ImagePattern(new Image(
         String.valueOf(MainMenuController.class.getResource(
-            "sprites/bullet_sprite.png"
-        ))));
+        "sprites/bullet_sprite.png"
+    ))));
     private final int attackDamage;
 
     public Bullet(Vector2D position, Vector2D velocity) {
@@ -44,11 +43,11 @@ public class Bullet extends Entity {
 
     private void processCollisions() {
         GameStateManager gameStateManager = GameStateManager.getGameStateManager();
-        for(SolidGameObject solid : gameStateManager.getGameMap().getCollidableGameObjects()) {
-            if(solid instanceof Bullet || solid instanceof Player) {
+        for (SolidGameObject solid : gameStateManager.getGameMap().getCollidableGameObjects()) {
+            if (solid instanceof Bullet || solid instanceof Player) {
                 continue;
             }
-            if(solid.getAbsolutHitbox().overlap(getAbsolutHitbox())) {
+            if (solid.getAbsolutHitbox().overlap(getAbsolutHitbox())) {
                 handleCollisionEvent(solid);
             }
         }
@@ -58,11 +57,12 @@ public class Bullet extends Entity {
         GameStateManager gameStateManager = GameStateManager.getGameStateManager();
         Player player = gameStateManager.getGameMap().getPlayer();
         // Deal damage to entity
-        if(solid instanceof Entity) {
-            Entity entity = ((Entity) solid);
+        if (solid instanceof Entity) {
+            Entity entity = ((Entity)solid);
             entity.setHealth(entity.getHealth() - attackDamage);
-        } else {
-            // Zieht 5 Punkte ab, wenn man keinen Gegner trifft
+        }
+        else {
+            // Removes 5 points if you miss a Zombi/enemy/target
             player.updateMissScore();
         }
 

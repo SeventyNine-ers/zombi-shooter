@@ -8,22 +8,22 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 /**
- * Diese Klasse beinhaltet die Logik der GameMap, Zonen und Positionierung von Elementen
+ * This class contains the logic of the GameMap and the positioning of GameObjects inside the map
  * <p>
- * Ersteller: Alexander Doubrava
- * Datum: 06.01.2024
+ * Author: Alexander Doubrava
+ * Date: 06.01.2024
  */
 public class GameMap {
     // TODO implement Zoning of the map so we don't check collisions with everything
-    // is also interesting for the Camera Positioning and rendering of objects within this zone
-    // bitwise zoning with e.g. xId, yId
-    // HashMap after zoning -> collisions at the zone with all zones around the current zone
     private Player player;
     private Map<Long, GameObject> gameMap = new ConcurrentHashMap<Long, GameObject>();
 
     //TODO: Idee Maps über Textfiles laden --> einfaches Planning und Einbringen von verschiedenen Maps/Levels
     public void initMap() {
-
+        /**
+         * initMap() sets the elements which are shown on the gameMap
+         * from top to bottom --> bottom elements have a layer above the top elements (if not collidable)
+         */
         for(int i = 0; i < 100; i++) {
             add(new Flower(new Vector2D((Math.random() * 1560) + 100, (Math.random() * 1560) + 100)));
         }
@@ -60,12 +60,12 @@ public class GameMap {
             add(new Wall(new Vector2D(1000, y)));
         }
 
-        for(int x = 400; x <=1040; x += 40){
+        for(int x = 400; x <= 1040; x += 40) {
             add(new Wall(new Vector2D(x, 1300)));
             add(new Wall(new Vector2D(x, 1500)));
         }
 
-        for(int y = 500; y <= 1300; y += 40){
+        for(int y = 500; y <= 1300; y += 40) {
             add(new Wall(new Vector2D(1041, y)));
             add(new Wall(new Vector2D(1241, y)));
         }

@@ -14,6 +14,13 @@ import javafx.scene.text.*;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * This class containg the logic behind the Scoreboard Menu
+ *
+ * Author: Patrick Kristof
+ * Date: 21.01.2024
+ */
+
 public class ScoreboardController {
     @FXML
     private VBox scoreboardVBox;

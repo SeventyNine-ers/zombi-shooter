@@ -7,6 +7,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * This class starts the application / the game
+ * <p>
+ * Author: Alexander Doubrava
+ * Data: 06.01.2024
+ */
+
 public class Application extends javafx.application.Application {
 
     public static double SCREEN_WIDTH = 1280;

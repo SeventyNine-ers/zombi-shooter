@@ -9,6 +9,13 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
+/**
+ * This class manages the scenes and when to show each one according to the game
+ * <p>
+ * Author: Alexander Doubrava
+ * Date: 06.01.2024
+ */
+
 public class SceneManager {
     private static SceneManager sceneManager;
     private final AnchorPane mainPane;

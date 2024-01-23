@@ -7,11 +7,10 @@ import javafx.scene.layout.Pane;
 //Im Pairprogramming gemacht: Alexander Doubrava, Patrick Kristof
 
 /**
- * Diese Klasse beinhaltet die Hintergrundlogik der Zusammenarbeit zwischen Game-Element-Rendering
- * und GameLoop! - Starten und Stoppen des Spiels
- * *
- * Ersteller: Alexander Doubrava, Patrick Kristof
- * Datum: 06.01.2024
+ * This class containg the logic of the interaction between GameObjects, Rendering and GameLoop
+ * <p>
+ * Authors: Alexander Doubrava, Patrick Kristof
+ * Date: 06.01.2024
  */
 public class GameRunManager {
     private static GameRunManager gameRunManager;

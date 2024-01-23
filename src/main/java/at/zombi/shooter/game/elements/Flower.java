@@ -9,13 +9,19 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.List;
 
-public class Flower extends GameObject {
+/**
+ * This class contains the logic of the gameObject Flower
+ *
+ * Author: Julia Sass
+ * Date: 22.01.2024
+ */
+
+public class Flower extends GameObject{
 
     private static final ImagePattern FLOWER_SPRITE = new ImagePattern(new Image(
         String.valueOf(MainMenuController.class.getResource(
-            "sprites/flower_sprite.png"
-        ))));
-
+        "sprites/flower_sprite.png"
+    ))));
     public Flower(Vector2D position) {
         super(position);
     }

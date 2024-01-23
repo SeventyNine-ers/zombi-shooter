@@ -4,11 +4,11 @@ import at.zombi.shooter.game.Renderable;
 import at.zombi.shooter.game.util.Vector2D;
 
 /**
- * Diese Klasse beschreibt die Objekte im Spiel die im sichtbaren Fenster gerendet werden.
- * Elemente wie Position, und Identifikation des Objekts sind dabei notwendig.
+ * This class contains the logic for rendering objects in the visible camera windows
+ * Elements like Positioning and Identification of the GameObject are necessary
  * <p>
- * Ersteller: Alexander Doubrava
- * Datum: 06.01.2024
+ * Author: Alexander Doubrava
+ * Date: 06.01.2024
  */
 
 public abstract class GameObject implements Renderable {

@@ -9,10 +9,11 @@ import at.zombi.shooter.manager.HighScoreManager;
 import java.util.List;
 
 /**
- * Diese Klasse beinhaltet die Logik in Bezug auf die Game-Loop in der das Spiel agiert.
- * <p>
- * Ersteller: Alexander Doubrava
- * Datum: 06.01.2024
+ *This class contains the logic in the GameMainLoop which runs while the GameState is RUNNING
+ * acts as updater for different elements
+ *
+ * Author: Alexander Doubrava
+ * Date: 06.01.2024
  */
 
 public class GameMainLoop {
@@ -39,14 +40,20 @@ public class GameMainLoop {
     }
 
     private void mainLoop() {
+        /**
+         * The mainLoop() states everything that happens while the game is running
+         * During the gameState.RUNNING it updates the Time on the right upper corner
+         * as well as updates every object which is moving inside the game
+         * with the help of the deltaTimeManager!
+         */
         while(running) {
             long startTime = System.currentTimeMillis();
             GameStateManager gameStateManager = GameStateManager.getGameStateManager();
 
-            if(GameState.RUNNING.equals(gameStateManager.getState())) {
+            if (GameState.RUNNING.equals(gameStateManager.getState())) {
                 DeltaTimeManager.getDeltaTimeManager().update();
                 gameStateManager.getGameMap().getAllGameObjects()
-                    .forEach(GameObject::update);
+                        .forEach(GameObject::update);
                 gameStateManager.updateTimeRemainingAndPlayerScore();
             } else {
                 sleepMillis(100);   //Für CPU
@@ -60,6 +67,10 @@ public class GameMainLoop {
     }
 
     private void spawnNewEnemies() {
+        /**
+         * spawnNewEnemies() currently spawns enemies in 2 positions (current Map Spawner)
+         * every time the mainLoop() goes through
+         */
         // TODO Make a better map and spawn enemies properly
         GameStateManager gameStateManager = GameStateManager.getGameStateManager();
         long enemies = gameStateManager.getGameMap().getCollidableGameObjects().stream()
@@ -77,17 +88,22 @@ public class GameMainLoop {
     }
 
     private void checkIfGameIsWon() {
+        /**
+         * checkIfGameIsWon() checks the current game state,
+         * calculates the points and saves them in the HighscoreEntry
+         */
         GameStateManager gameStateManager = GameStateManager.getGameStateManager();
         Player player = gameStateManager.getGameMap().getPlayer();
         // Mark game as won if time is up
-        if(gameStateManager.getTimeRemaining() <= 0) {
+        if (gameStateManager.getTimeRemaining() <= 0) {
             if(gameStateManager.getState() == GameState.RUNNING) {
-                // Punkte Anrechnung für die ueberlebte Zeit
+                // Points for the lives that remain after winning the game
                 player.updateLivesScore(player.getHealth());
-                // Speichern des Scores bei gewonnenem Spiel
+                // Saving the score to the HighScoreManager
                 HighscoreEntry saveScore = new HighscoreEntry(PlayerData.getInstance().getPlayerName(), player.getScore());
                 HighScoreManager.addHighscoreEntry(saveScore, HighScoreManager.loadHighscores());
             }
+            //gameState changed to WON to ensure the WON-Screen is activated
             gameStateManager.setState(GameState.WON);
         }
     }
@@ -95,16 +111,21 @@ public class GameMainLoop {
     private void ensureMinLoopTime(long startTime) {
         // We make sure that delta time does not get to small.
         long waitTime = (System.currentTimeMillis() - startTime) - 2;
-        if(waitTime < 0) {
+        if (waitTime < 0) {
             sleepMillis(-waitTime);
         }
     }
 
     private void handleControlInputs() {
+        /**
+         * Goes through the controlInputManager to see which inputs are currently
+         * put in by the player and acts accordingly
+         */
         ControlInputManager controlInputManager = ControlInputManager.getControlInputManager();
         GameStateManager gameStateManager = GameStateManager.getGameStateManager();
 
-        if(controlInputManager.isPauseGame()) {
+        //Pauses the game if the ESC button is pressed, according to the controlInputManager
+        if (controlInputManager.isPauseGame()) {
             gameStateManager.setState(GameState.PAUSED);
         }
     }
@@ -112,7 +133,6 @@ public class GameMainLoop {
     private void sleepMillis(long millis) {
         try {
             Thread.sleep(millis);
-        } catch(InterruptedException e) {
-        }
+        } catch (InterruptedException e) {}
     }
 }

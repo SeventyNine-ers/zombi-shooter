@@ -1,10 +1,10 @@
 package at.zombi.shooter.game.state;
 
 /**
- * Diese Klasse beinhaltet die GameStates, welche sich während der GameLoop ändern.
- * <p>
- * Ersteller: Alexander Doubrava
- * Datum: 06.01.2024
+ * This class contains the current states of the game as enumeration
+ *
+ * Author: Alexander Doubrava
+ * Date: 06.01.2024
  */
 
 public enum GameState {

@@ -15,10 +15,10 @@ import javafx.scene.shape.Rectangle;
 import java.util.List;
 
 /**
- * Diese Klasse beinhaltet die Logik in Bezug auf das Game-Element Zombie
+ * This class contains the logic for the GameObject Zombie
  * <p>
- * Ersteller: Alexander Doubrava
- * Datum: 06.01.2024
+ * Author: Alexander Doubrava
+ * Date: 06.01.2024
  */
 
 public class Zombie extends Entity {
@@ -41,7 +41,7 @@ public class Zombie extends Entity {
         double deltaTime = DeltaTimeManager.getDeltaTimeManager().getDeltaTime();
         if(getHealth() <= 0) {
             gameStateManager.getGameMap().remove(this);
-            // Punkte anrechnen, wenn der Zombie stirbt
+            // Calculate points if the player kills a zombie
             player.updateKillScore();
             return;
         }
@@ -90,6 +90,7 @@ public class Zombie extends Entity {
         Rectangle zombiModel = new Rectangle(getPosition().x - 20, getPosition().y - 20, 40, 40);
         final double radToDeg = (180 / 3.1415926);
         zombiModel.setRotate(getVelocity().getAngle() * radToDeg);
+
         zombiModel.setFill(ZOMBI_SPRITE);
 
         return List.of(zombiModel);

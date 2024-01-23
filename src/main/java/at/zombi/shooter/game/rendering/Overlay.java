@@ -25,10 +25,11 @@ import java.util.stream.Stream;
 //Im Pairprogramming implementiert: Alexander Doubrava, Patrick Kristof
 
 /**
- * Diese Klasse beinhaltet die Elemente die im Game-Overlay zu sehen sind und mit denen man agieren kann
+ * This class contains the elements which are seen in the Game-Overlay (menu)
+ * and the logic behind the functioning of those screens inside the Overlay
  * <p>
- * Ersteller: Alexander Doubrava, Patrick Kristof
- * Datum: 06.01.2024
+ * Authors: Alexander Doubrava, Patrick Kristof
+ * Date: 06.01.2024
  */
 public class Overlay implements Renderable {
 

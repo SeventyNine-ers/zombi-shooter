@@ -17,10 +17,10 @@ import java.util.stream.Collectors;
 /**
  * The camera is an object on the map and normally follows the player
  * The camera mainly contains logic to adjust the absolut position of objects on the map
- * to the relativ position of the camera view and logic to avoid drawing objects out of sight
+ * to the relative position of the camera view and logic to avoid drawing objects out of sight
  * *
- * Ersteller: Alexander Doubrava
- * Datum: 06.01.2024
+ * Author: Alexander Doubrava
+ * Date: 06.01.2024
  */
 public class Camera extends GameObject {
 
