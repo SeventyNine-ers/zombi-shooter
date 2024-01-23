@@ -7,11 +7,10 @@ import javafx.scene.layout.Pane;
 //Im Pairprogramming gemacht: Alexander Doubrava, Patrick Kristof
 
 /**
- * Diese Klasse beinhaltet die Hintergrundlogik der Zusammenarbeit zwischen Game-Element-Rendering
- * und GameLoop! - Starten und Stoppen des Spiels
- * *
- * Ersteller: Alexander Doubrava, Patrick Kristof
- * Datum: 06.01.2024
+ * This class containg the logic of the interaction between GameObjects, Rendering and GameLoop
+ * <p>
+ * Authors: Alexander Doubrava, Patrick Kristof
+ * Date: 06.01.2024
  */
 public class GameRunManager {
     private static GameRunManager gameRunManager;
@@ -24,7 +23,7 @@ public class GameRunManager {
     }
 
     public static synchronized GameRunManager getGameRunManager() {
-        if (gameRunManager == null) {
+        if(gameRunManager == null) {
             gameRunManager = new GameRunManager();
         }
 
@@ -43,10 +42,10 @@ public class GameRunManager {
     }
 
     public synchronized void stopGame() {
-        if (gameRenderer != null) {
+        if(gameRenderer != null) {
             gameRenderer.stopRenderLoop();
         }
-        if (gameMainLoop != null) {
+        if(gameMainLoop != null) {
             gameMainLoop.stopMainLoop();
         }
     }

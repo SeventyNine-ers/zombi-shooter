@@ -11,7 +11,14 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.List;
 
-public class Spawner extends SolidGameObject{
+/**
+ * This class contains the logic for the GameObject Spawner (Enemyspawner)
+ * <p>
+ * Author: Julia Sass
+ * Date: 21.01.2024
+ */
+
+public class Spawner extends SolidGameObject {
     private static final ImagePattern SPAWNER_SPRITE = new ImagePattern(new Image(
         String.valueOf(MainMenuController.class.getResource(
             "sprites/spawner_sprite.gif"

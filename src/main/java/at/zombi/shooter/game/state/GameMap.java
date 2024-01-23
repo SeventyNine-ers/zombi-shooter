@@ -8,23 +8,23 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 /**
- * Diese Klasse beinhaltet die Logik der GameMap, Zonen und Positionierung von Elementen
+ * This class contains the logic of the GameMap and the positioning of GameObjects inside the map
  * <p>
- * Ersteller: Alexander Doubrava
- * Datum: 06.01.2024
+ * Author: Alexander Doubrava
+ * Date: 06.01.2024
  */
 public class GameMap {
     // TODO implement Zoning of the map so we don't check collisions with everything
-    // is also interesting for the Camera Positioning and rendering of objects within this zone
-    // bitwise zoning with e.g. xId, yId
-    // HashMap after zoning -> collisions at the zone with all zones around the current zone
     private Player player;
     private Map<Long, GameObject> gameMap = new ConcurrentHashMap<Long, GameObject>();
 
     //TODO: Idee Maps über Textfiles laden --> einfaches Planning und Einbringen von verschiedenen Maps/Levels
     public void initMap() {
-
-        for(int i = 0; i < 100; i++){
+        /**
+         * initMap() sets the elements which are shown on the gameMap
+         * from top to bottom --> bottom elements have a layer above the top elements (if not collidable)
+         */
+        for(int i = 0; i < 100; i++) {
             add(new Flower(new Vector2D((Math.random() * 1560) + 100, (Math.random() * 1560) + 100)));
         }
 
@@ -60,12 +60,12 @@ public class GameMap {
             add(new Wall(new Vector2D(1000, y)));
         }
 
-        for(int x = 400; x <=1040; x += 40){
+        for(int x = 400; x <= 1040; x += 40) {
             add(new Wall(new Vector2D(x, 1300)));
             add(new Wall(new Vector2D(x, 1500)));
         }
 
-        for(int y = 500; y <= 1300; y += 40){
+        for(int y = 500; y <= 1300; y += 40) {
             add(new Wall(new Vector2D(1041, y)));
             add(new Wall(new Vector2D(1241, y)));
         }
@@ -84,17 +84,17 @@ public class GameMap {
         add(new Wall(new Vector2D(200, 1320)));
         add(new Wall(new Vector2D(300, 1320)));
 
-        for(int x = 80; x <= 200; x += 40){
+        for(int x = 80; x <= 200; x += 40) {
             add(new Wall(new Vector2D(x, 841)));
             add(new Wall(new Vector2D(x, 1281)));
         }
 
-        for(int x = 300; x <= 420; x += 40){
+        for(int x = 300; x <= 420; x += 40) {
             add(new Wall(new Vector2D(x, 841)));
             add(new Wall(new Vector2D(x, 1281)));
         }
 
-        for(int y = 840; y <= 1240; y += 40){
+        for(int y = 840; y <= 1240; y += 40) {
             add(new Wall(new Vector2D(80, y)));
             add(new Wall(new Vector2D(420, y)));
         }
@@ -102,6 +102,7 @@ public class GameMap {
     }
 
     public List<GameObject> getAllGameObjects() {
+        //gets all gameObjects inside the gameMap
         ArrayList<GameObject> allObejcts = new ArrayList<>(gameMap.values());
         allObejcts.add(player);
 
@@ -109,6 +110,7 @@ public class GameMap {
     }
 
     public List<SolidGameObject> getCollidableGameObjects() {
+        //gets all gameObjects inside the gameMap from type SolidGameObjects (which are collidable)
         ArrayList<GameObject> allObejcts = new ArrayList<>(gameMap.values());
         allObejcts.add(player);
 

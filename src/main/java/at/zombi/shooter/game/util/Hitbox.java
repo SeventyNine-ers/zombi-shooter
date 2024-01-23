@@ -4,11 +4,11 @@ import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
 
 /**
- * Diese Klasse beinhaltet die Logik der Hitbox aller Elemente die eine besitzen.
- * Zurzeit ist die Hitbox nur in Rechteckformat implementiert
- * *
- * Ersteller: Alexander Doubrava
- * Datum: 06.01.2024
+ * This class contains the logic of the hitboxes of each GameObject
+ * Currently the hitbox is only available in the Rectangle form
+ * <p>
+ * Author: Alexander Doubrava
+ * Date: 06.01.2024
  */
 public class Hitbox {
 
@@ -45,7 +45,7 @@ public class Hitbox {
     public boolean overlap(Hitbox hitbox) {
         Bounds here = new BoundingBox(topLeft.x, topLeft.y, bottomRight.x - topLeft.x, bottomRight.y - topLeft.y);
         Bounds notHere = new BoundingBox(hitbox.topLeft.x, hitbox.topLeft.y, hitbox.bottomRight.x - hitbox.topLeft.x,
-                hitbox.bottomRight.y - hitbox.topLeft.y);
+            hitbox.bottomRight.y - hitbox.topLeft.y);
 
         return here.intersects(notHere);
     }
@@ -53,8 +53,8 @@ public class Hitbox {
     @Override
     public String toString() {
         return "Hitbox{" +
-                "topLeft=" + topLeft +
-                ", bottomRight=" + bottomRight +
-                '}';
+            "topLeft=" + topLeft +
+            ", bottomRight=" + bottomRight +
+            '}';
     }
 }

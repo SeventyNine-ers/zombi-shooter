@@ -16,6 +16,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 import java.io.IOException;
+/**
+ * This class containg the logic behind the elements inside the MainMenu --> act according to the element
+ *
+ * Authors: Alexander Doubrava, Patrick Kristof
+ * Date: 06.01.2024
+ */
 
 public class MainMenuController {
 

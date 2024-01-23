@@ -9,6 +9,13 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
+/**
+ * This class manages the scenes and when to show each one according to the game
+ * <p>
+ * Author: Alexander Doubrava
+ * Date: 06.01.2024
+ */
+
 public class SceneManager {
     private static SceneManager sceneManager;
     private final AnchorPane mainPane;
@@ -18,7 +25,7 @@ public class SceneManager {
     }
 
     public static synchronized SceneManager getSceneManager() {
-        if (sceneManager == null) {
+        if(sceneManager == null) {
             sceneManager = new SceneManager();
         }
         return sceneManager;
@@ -69,7 +76,7 @@ public class SceneManager {
         try {
             this.mainPane.setMinWidth(this.mainPane.getScene().getWidth());
             this.mainPane.setMinHeight(this.mainPane.getScene().getHeight());
-        } catch (NullPointerException exception) {
+        } catch(NullPointerException exception) {
             // The stage isn't created yet. So we ignore resizing.
         }
 

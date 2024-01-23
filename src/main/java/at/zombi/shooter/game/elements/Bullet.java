@@ -14,10 +14,9 @@ import javafx.scene.shape.Rectangle;
 import java.util.List;
 
 /**
- * Diese Klasse beinhaltet die Logik in Bezug auf das Game-Element Kugel (eines Gewehrs/Pistole)
- *
- * Ersteller: Alexander Doubrava
- * Datum: 06.01.2024
+ * This class contains the logic for the gameObject Bullet
+ * Author: Alexander Doubrava
+ * Date: 06.01.2024
  */
 
 public class Bullet extends Entity {
@@ -63,7 +62,7 @@ public class Bullet extends Entity {
             entity.setHealth(entity.getHealth() - attackDamage);
         }
         else {
-            // Zieht 5 Punkte ab, wenn man keinen Gegner trifft
+            // Removes 5 points if you miss a Zombi/enemy/target
             player.updateMissScore();
         }
 

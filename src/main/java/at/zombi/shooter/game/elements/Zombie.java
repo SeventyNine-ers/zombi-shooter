@@ -15,10 +15,10 @@ import javafx.scene.shape.Rectangle;
 import java.util.List;
 
 /**
- * Diese Klasse beinhaltet die Logik in Bezug auf das Game-Element Zombie
- *
- * Ersteller: Alexander Doubrava
- * Datum: 06.01.2024
+ * This class contains the logic for the GameObject Zombie
+ * <p>
+ * Author: Alexander Doubrava
+ * Date: 06.01.2024
  */
 
 public class Zombie extends Entity {
@@ -39,9 +39,9 @@ public class Zombie extends Entity {
         GameStateManager gameStateManager = GameStateManager.getGameStateManager();
         Player player = gameStateManager.getGameMap().getPlayer();
         double deltaTime = DeltaTimeManager.getDeltaTimeManager().getDeltaTime();
-        if (getHealth() <= 0) {
+        if(getHealth() <= 0) {
             gameStateManager.getGameMap().remove(this);
-            // Punkte anrechnen, wenn der Zombie stirbt
+            // Calculate points if the player kills a zombie
             player.updateKillScore();
             return;
         }
@@ -57,28 +57,28 @@ public class Zombie extends Entity {
     private void processCollisionAndApplyMovement() {
         GameStateManager gameStateManager = GameStateManager.getGameStateManager();
 
-        for (SolidGameObject solid : gameStateManager.getGameMap().getCollidableGameObjects()) {
-            if (solid instanceof Bullet || solid instanceof Zombie) {
+        for(SolidGameObject solid : gameStateManager.getGameMap().getCollidableGameObjects()) {
+            if(solid instanceof Bullet || solid instanceof Zombie) {
                 continue;
             }
 
             boolean overlapXCords = solid.getAbsolutHitbox().overlap(
-                    getHitbox().getAbsolutHitBox(getPosition().getAdded(new Vector2D(getVelocity().x, 0)))
+                getHitbox().getAbsolutHitBox(getPosition().getAdded(new Vector2D(getVelocity().x, 0)))
             );
             boolean overlapYCords = solid.getAbsolutHitbox().overlap(
-                    getHitbox().getAbsolutHitBox(getPosition().getAdded(new Vector2D(0, getVelocity().y)))
+                getHitbox().getAbsolutHitBox(getPosition().getAdded(new Vector2D(0, getVelocity().y)))
             );
 
-            if ((overlapXCords || overlapYCords) && solid instanceof Player) {
+            if((overlapXCords || overlapYCords) && solid instanceof Player) {
                 ((Player) solid).hitByZombie(this);
             }
-            if (overlapXCords && overlapYCords) {
+            if(overlapXCords && overlapYCords) {
                 return;
             }
-            if (overlapXCords) {
+            if(overlapXCords) {
                 setVelocity(new Vector2D(0, getVelocity().y));
             }
-            if (overlapYCords) {
+            if(overlapYCords) {
                 setVelocity(new Vector2D(getVelocity().x, 0));
             }
         }

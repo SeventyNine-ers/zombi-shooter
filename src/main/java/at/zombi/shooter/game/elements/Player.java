@@ -44,7 +44,7 @@ public class Player extends Entity {
         processCollisionAndApplyMovement();
 
         if (getHealth() <= 0) {
-            // Speicher den Score beim verlieren des Spiels
+            // Saving the players score if he/she loses the game
             HighscoreEntry saveScore = new HighscoreEntry(PlayerData.getInstance().getPlayerName(), this.getScore());
             HighScoreManager.addHighscoreEntry(saveScore, HighScoreManager.loadHighscores());
 

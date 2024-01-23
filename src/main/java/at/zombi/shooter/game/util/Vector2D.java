@@ -1,13 +1,10 @@
 package at.zombi.shooter.game.util;
 
 /**
- * Diese Klasse beinhaltet die Logik in Bezug auf Vektorimplementierung für die Positionierung von Elementen
- * *
- * *
  * Vector2D implementation of Gunvir Singh Ranu from https://gist.github.com/gunvirranu/6816d65c0231981787ebefd3bdb61f98 am 06.01.2024
- * *
- * Ersteller: Alexander Doubrava
- * Datum: 06.01.2024
+ * </p>
+ * Author: Alexander Doubrava
+ * Date: 06.01.2024
  */
 //
 public class Vector2D {
@@ -15,7 +12,8 @@ public class Vector2D {
     public double x;
     public double y;
 
-    public Vector2D() { }
+    public Vector2D() {
+    }
 
     public Vector2D(double x, double y) {
         this.x = x;
@@ -86,11 +84,11 @@ public class Vector2D {
         x /= magnitude;
         y /= magnitude;
 
-        if (Double.isNaN(x)) {
+        if(Double.isNaN(x)) {
             x = 0;
         }
 
-        if (Double.isNaN(y)) {
+        if(Double.isNaN(y)) {
             y = 0;
         }
     }
@@ -248,10 +246,10 @@ public class Vector2D {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == this) {
+        if(obj == this) {
             return true;
         }
-        if (obj instanceof Vector2D) {
+        if(obj instanceof Vector2D) {
             Vector2D v = (Vector2D) obj;
             return (x == v.x) && (y == v.y);
         }

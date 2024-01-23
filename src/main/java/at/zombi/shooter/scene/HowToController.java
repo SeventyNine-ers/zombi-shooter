@@ -11,6 +11,12 @@ import javafx.scene.text.*;
 
 import java.io.IOException;
 
+/**
+ * This class contains the logic behind the HowTo-Button inside the game
+ *
+ * Authors: Alexander Doubrava, Patrick Kristof
+ * Date: 06.01.2024
+ */
 public class HowToController {
     @FXML
     private VBox howToVBox;
@@ -19,22 +25,22 @@ public class HowToController {
 
     @FXML
     public void initialize() {
-        String howToContent = "Willkommen zum Zombie Shooter!\n\n" +
-                "Ziel: Überlebe 5 Minuten und besiege die Zombies!\n\n" +
-                "Steuerung:\n" +
-                "  - Bewegung: W-A-S-D\n" +
-                "  - Pause: Esc\n" +
-                "  - Zielen: Maus bewegen\n" +
-                "  - Schießen: Linksklick\n\n" +
-                "Spielregeln:\n" +
-                "  - Du hast 3 Leben (oben links)\n" +
-                "  - Überlebe, um das Spiel zu gewinnen!\n\n" +
-                "Punkteberechnung:\n" +
-                "  - Zombie kill (+10 Punkte)\n" +
-                "  - Jede überlebte Sekunde (+1 Punkt)\n" +
-                "  - Jedes Leben am Ende übrig (+50 Punkte)\n" +
-                "  - Jeder Schuss, der daneben geht (-5 Punkte)\n\n" +
-                "Viel Erfolg und gute Jagd!\n\n\n\n";
+        String howToContent = "Welcome to Zombi-Shooter!\n\n" +
+                "Goal: Survive the 5 Minutes and get as many Points as possible!\n\n" +
+                "Controls:\n" +
+                "  - Movement: W(Forward)-A(Left)-S(Backwards)-D(Right)\n" +
+                "  - Pausing the Game: Esc\n" +
+                "  - Aiming: Moving the mouse\n" +
+                "  - Shoot Bullets: Left-Click on Mouse\n\n" +
+                "Ruleset:\n" +
+                "  - You have 3 lives (on the left-upper corner)\n" +
+                "  - Survive to win the game!\n\n" +
+                "How the game calculates points:\n" +
+                "  - Kill a Zombie (+10 Points)\n" +
+                "  - Survive the time (+1 Point/Second)\n" +
+                "  - Keep safe (+50 Points/life left)\n" +
+                "  - Every bullet that doesn't hit costs you (-5 Points/bullet)\n\n" +
+                "Happy Hunting!\n\n\n\n";
 
         howToText.setFont(Font.font("Arial", FontWeight.BOLD, 22));
 

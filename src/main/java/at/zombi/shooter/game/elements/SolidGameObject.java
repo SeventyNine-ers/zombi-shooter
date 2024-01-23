@@ -4,11 +4,11 @@ import at.zombi.shooter.game.util.Hitbox;
 import at.zombi.shooter.game.util.Vector2D;
 
 /**
- * Diese Klasse beinhaltet die Beschreibung der Game-Objekte welche als Kollisionsgegenstände im Spiel agieren.
- * Beispiele: Kugel, Baum, Wand --> Elemente die nicht "übergangen" werden sollen
- *
- * Ersteller: Alexander Doubrava
- * Datum: 06.01.2024
+ * This class containg the information on how GameObjects act as solid as well as collidable
+ * For example: Bullet, Tree, Wall --> elements you cannot walk over
+ * <p>
+ * Author: Alexander Doubrava
+ * Date: 06.01.2024
  */
 
 public abstract class SolidGameObject extends GameObject {
