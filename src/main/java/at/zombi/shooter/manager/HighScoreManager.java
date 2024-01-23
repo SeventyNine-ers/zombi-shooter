@@ -58,7 +58,7 @@ public class HighScoreManager {
 
     //sorts the Highscores --> only showing the TOP 10
     private static void sortAndTrimHighscores(List<HighscoreEntry> highscores) {
-        Collections.sort(highscores, (e1, e2) -> Integer.compare(e2.getScore(), e1.getScore()));
+        Collections.sort(highscores, Comparator.comparing(HighscoreEntry::getScore).reversed());
         if(highscores.size() > 10) {
             highscores.subList(10, highscores.size()).clear();
         }
