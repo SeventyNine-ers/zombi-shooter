@@ -24,7 +24,7 @@ public class GameMap {
     //TODO: Idee Maps über Textfiles laden --> einfaches Planning und Einbringen von verschiedenen Maps/Levels
     public void initMap() {
 
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < 100; i++) {
             add(new Flower(new Vector2D((Math.random() * 1560) + 100, (Math.random() * 1560) + 100)));
         }
 
@@ -84,17 +84,17 @@ public class GameMap {
         add(new Wall(new Vector2D(200, 1320)));
         add(new Wall(new Vector2D(300, 1320)));
 
-        for(int x = 80; x <= 200; x += 40){
+        for(int x = 80; x <= 200; x += 40) {
             add(new Wall(new Vector2D(x, 841)));
             add(new Wall(new Vector2D(x, 1281)));
         }
 
-        for(int x = 300; x <= 420; x += 40){
+        for(int x = 300; x <= 420; x += 40) {
             add(new Wall(new Vector2D(x, 841)));
             add(new Wall(new Vector2D(x, 1281)));
         }
 
-        for(int y = 840; y <= 1240; y += 40){
+        for(int y = 840; y <= 1240; y += 40) {
             add(new Wall(new Vector2D(80, y)));
             add(new Wall(new Vector2D(420, y)));
         }
@@ -102,17 +102,17 @@ public class GameMap {
     }
 
     public List<GameObject> getAllGameObjects() {
-        ArrayList<GameObject> allObejcts = new ArrayList<>(gameMap.values());
-        allObejcts.add(player);
+        ArrayList<GameObject> allObjects = new ArrayList<>(gameMap.values());
+        allObjects.add(player);
 
-        return Collections.unmodifiableList(allObejcts);
+        return Collections.unmodifiableList(allObjects);
     }
 
     public List<SolidGameObject> getCollidableGameObjects() {
-        ArrayList<GameObject> allObejcts = new ArrayList<>(gameMap.values());
-        allObejcts.add(player);
+        ArrayList<GameObject> allObjects = new ArrayList<>(gameMap.values());
+        allObjects.add(player);
 
-        return allObejcts.stream()
+        return allObjects.stream()
             .filter(el -> el instanceof SolidGameObject)
             .map(el -> (SolidGameObject) el)
             .collect(Collectors.toUnmodifiableList());

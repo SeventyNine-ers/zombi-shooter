@@ -6,9 +6,11 @@ import at.zombi.shooter.game.util.*;
 import at.zombi.shooter.manager.ControlInputManager;
 import at.zombi.shooter.manager.HighScoreManager;
 
+import java.util.List;
+
 /**
  * Diese Klasse beinhaltet die Logik in Bezug auf die Game-Loop in der das Spiel agiert.
- *
+ * <p>
  * Ersteller: Alexander Doubrava
  * Datum: 06.01.2024
  */
@@ -41,10 +43,10 @@ public class GameMainLoop {
             long startTime = System.currentTimeMillis();
             GameStateManager gameStateManager = GameStateManager.getGameStateManager();
 
-            if (GameState.RUNNING.equals(gameStateManager.getState())) {
+            if(GameState.RUNNING.equals(gameStateManager.getState())) {
                 DeltaTimeManager.getDeltaTimeManager().update();
                 gameStateManager.getGameMap().getAllGameObjects()
-                        .forEach(GameObject::update);
+                    .forEach(GameObject::update);
                 gameStateManager.updateTimeRemainingAndPlayerScore();
             } else {
                 sleepMillis(100);   //Für CPU
@@ -61,10 +63,16 @@ public class GameMainLoop {
         // TODO Make a better map and spawn enemies properly
         GameStateManager gameStateManager = GameStateManager.getGameStateManager();
         long enemies = gameStateManager.getGameMap().getCollidableGameObjects().stream()
-                .filter(solid -> solid instanceof Zombie)
-                .count();
-        if (enemies < 40) {
-            gameStateManager.getGameMap().add(new Zombie(new Vector2D(800 + (Math.random() * 100) - 50, 960 + (Math.random() * 100) - 50)));
+            .filter(solid -> solid instanceof Zombie)
+            .count();
+        List<GameObject> spawnPoints = gameStateManager.getGameMap().getAllGameObjects().stream()
+            .filter(solid -> solid instanceof Spawner)
+            .toList();
+        if(enemies < 40) {
+            for(GameObject spawnPoint : spawnPoints) {
+                // gameStateManager.getGameMap().add(new Zombie(new Vector2D(800 + (Math.random() * 100) - 50, 960 + (Math.random() * 100) - 50)));
+                gameStateManager.getGameMap().add(new Zombie(new Vector2D(spawnPoint.getPosition().x, spawnPoint.getPosition().y + (Math.random() * (250 - 100) + 100))));
+            }
         }
     }
 
@@ -72,7 +80,7 @@ public class GameMainLoop {
         GameStateManager gameStateManager = GameStateManager.getGameStateManager();
         Player player = gameStateManager.getGameMap().getPlayer();
         // Mark game as won if time is up
-        if (gameStateManager.getTimeRemaining() <= 0) {
+        if(gameStateManager.getTimeRemaining() <= 0) {
             if(gameStateManager.getState() == GameState.RUNNING) {
                 // Punkte Anrechnung für die ueberlebte Zeit
                 player.updateLivesScore(player.getHealth());
@@ -87,7 +95,7 @@ public class GameMainLoop {
     private void ensureMinLoopTime(long startTime) {
         // We make sure that delta time does not get to small.
         long waitTime = (System.currentTimeMillis() - startTime) - 2;
-        if (waitTime < 0) {
+        if(waitTime < 0) {
             sleepMillis(-waitTime);
         }
     }
@@ -96,7 +104,7 @@ public class GameMainLoop {
         ControlInputManager controlInputManager = ControlInputManager.getControlInputManager();
         GameStateManager gameStateManager = GameStateManager.getGameStateManager();
 
-        if (controlInputManager.isPauseGame()) {
+        if(controlInputManager.isPauseGame()) {
             gameStateManager.setState(GameState.PAUSED);
         }
     }
@@ -104,6 +112,7 @@ public class GameMainLoop {
     private void sleepMillis(long millis) {
         try {
             Thread.sleep(millis);
-        } catch (InterruptedException e) {}
+        } catch(InterruptedException e) {
+        }
     }
 }
