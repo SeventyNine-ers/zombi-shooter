@@ -72,12 +72,10 @@ public class SceneManager {
     }
 
     private void anchorSceneAndAdjustSize(Node scene) {
-        // Adjust size of mainPane if possible
-        try {
+
+        if(this.mainPane != null && this.mainPane.getScene() != null) {
             this.mainPane.setMinWidth(this.mainPane.getScene().getWidth());
             this.mainPane.setMinHeight(this.mainPane.getScene().getHeight());
-        } catch(NullPointerException exception) {
-            // The stage isn't created yet. So we ignore resizing.
         }
 
         // Makes sure that mainPane child is stretched over the entire size
