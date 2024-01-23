@@ -16,9 +16,10 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.*;
 
 import java.util.List;
+
 /**
  * Diese Klasse beinhaltet die Logik in Bezug auf das Game-Element Spieler (Player)
- *
+ * <p>
  * Ersteller: Alexander Doubrava
  * Datum: 06.01.2024
  */
@@ -43,7 +44,7 @@ public class Player extends Entity {
         setVelocity(getMovementVector());
         processCollisionAndApplyMovement();
 
-        if (getHealth() <= 0) {
+        if(getHealth() <= 0) {
             // Speicher den Score beim verlieren des Spiels
             HighscoreEntry saveScore = new HighscoreEntry(PlayerData.getInstance().getPlayerName(), this.getScore());
             HighScoreManager.addHighscoreEntry(saveScore, HighScoreManager.loadHighscores());
@@ -54,7 +55,7 @@ public class Player extends Entity {
 
     private void handleShot() {
         Vector2D target = ControlInputManager.getControlInputManager().hasLeftClicked();
-        if (target == null) {
+        if(target == null) {
             return;
         }
 
@@ -67,7 +68,7 @@ public class Player extends Entity {
     }
 
     private void handleEntityCollision(Entity entity) {
-        if (entity instanceof Zombie) {
+        if(entity instanceof Zombie) {
             hitByZombie((Zombie) entity);
         }
     }
@@ -78,16 +79,16 @@ public class Player extends Entity {
 
         int speed = 4;
         Vector2D velo = new Vector2D(0, 0);
-        if (controlInputManager.isForward()) {
+        if(controlInputManager.isForward()) {
             velo.add(0, -1);
         }
-        if (controlInputManager.isBackward()) {
+        if(controlInputManager.isBackward()) {
             velo.add(0, 1);
         }
-        if (controlInputManager.isLeft()) {
+        if(controlInputManager.isLeft()) {
             velo.add(-1, 0);
         }
-        if (controlInputManager.isRight()) {
+        if(controlInputManager.isRight()) {
             velo.add(1, 0);
         }
         velo.normalize();
@@ -99,28 +100,28 @@ public class Player extends Entity {
     private void processCollisionAndApplyMovement() {
         GameStateManager gameStateManager = GameStateManager.getGameStateManager();
 
-        for (SolidGameObject solid : gameStateManager.getGameMap().getCollidableGameObjects()) {
-            if (solid == this || solid instanceof Bullet) {
+        for(SolidGameObject solid : gameStateManager.getGameMap().getCollidableGameObjects()) {
+            if(solid == this || solid instanceof Bullet) {
                 continue;
             }
 
             boolean overlapXCords = solid.getAbsolutHitbox().overlap(
-                    getHitbox().getAbsolutHitBox(getPosition().getAdded(new Vector2D(getVelocity().x, 0)))
+                getHitbox().getAbsolutHitBox(getPosition().getAdded(new Vector2D(getVelocity().x, 0)))
             );
             boolean overlapYCords = solid.getAbsolutHitbox().overlap(
-                    getHitbox().getAbsolutHitBox(getPosition().getAdded(new Vector2D(0, getVelocity().y)))
+                getHitbox().getAbsolutHitBox(getPosition().getAdded(new Vector2D(0, getVelocity().y)))
             );
 
-            if ((overlapXCords || overlapYCords) && solid instanceof Entity) {
+            if((overlapXCords || overlapYCords) && solid instanceof Entity) {
                 handleEntityCollision((Entity) solid);
             }
-            if (overlapXCords && overlapYCords) {
+            if(overlapXCords && overlapYCords) {
                 return;
             }
-            if (overlapXCords) {
+            if(overlapXCords) {
                 setVelocity(new Vector2D(0, getVelocity().y));
             }
-            if (overlapYCords) {
+            if(overlapYCords) {
                 setVelocity(new Vector2D(getVelocity().x, 0));
             }
         }
@@ -134,7 +135,7 @@ public class Player extends Entity {
         playerModel.setFill(PLAYER_SPRITE);
 
         // Let player blink after zombie hit for 5 sek
-        if (System.currentTimeMillis() - lastZombieHit < (DAMAGE_IMMUNITY_SEC * 1000) && (System.currentTimeMillis() / 100) * 100 % 200 == 0) {
+        if(System.currentTimeMillis() - lastZombieHit < (DAMAGE_IMMUNITY_SEC * 1000) && (System.currentTimeMillis() / 100) * 100 % 200 == 0) {
             playerModel.setVisible(false);
         } else {
             playerModel.setVisible(true);
@@ -145,9 +146,9 @@ public class Player extends Entity {
 
         final double radToDeg = (180 / 3.1415926);
         playerModel.setRotate(mousePosition
-                .getAdded(new Vector2D(-Application.SCREEN_WIDTH / 2, -Application.SCREEN_HEIGHT / 2))
-                .getNormalized()
-                .getAngle() * radToDeg + 90
+            .getAdded(new Vector2D(-Application.SCREEN_WIDTH / 2, -Application.SCREEN_HEIGHT / 2))
+            .getNormalized()
+            .getAngle() * radToDeg + 90
         );
 
         return List.of(playerModel);
@@ -155,7 +156,7 @@ public class Player extends Entity {
 
     public void hitByZombie(Zombie zombie) {
         // Reduce health if we touch zombie but only every 3 sec
-        if (System.currentTimeMillis() - lastZombieHit > DAMAGE_IMMUNITY_SEC * 1000) {
+        if(System.currentTimeMillis() - lastZombieHit > DAMAGE_IMMUNITY_SEC * 1000) {
             setLastZombieHit(System.currentTimeMillis());
             setHealth(getHealth() - zombie.getAttackDamage());
         }
@@ -173,17 +174,21 @@ public class Player extends Entity {
     public int getScore() {
         return score;
     }
+
     public void updateTimeBasedScore() {
         score += 1;
     }
+
     public void updateKillScore() {
         score += 10;
     }
+
     public void updateMissScore() {
         score -= 5;
     }
+
     public void updateLivesScore(long remainingLives) {
         int lifeBonus = 50;
-        score += (int) ((remainingLives/100) * lifeBonus);
+        score += (int) ((remainingLives / 100) * lifeBonus);
     }
 }

@@ -1,10 +1,12 @@
 package at.zombi.shooter.game.rendering;
 
 import javafx.animation.AnimationTimer;
+
 import java.util.function.Consumer;
+
 /**
  * Diese Klasse beinhaltet die Logik des Renderns von Elementen im Bezug auf die TimeLoop / GameLoop
- *
+ * <p>
  * Ersteller: Alexander Doubrava
  * Datum: 06.01.2024
  */

@@ -11,7 +11,7 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.List;
 
-public class Spawner extends SolidGameObject{
+public class Spawner extends SolidGameObject {
     private static final ImagePattern SPAWNER_SPRITE = new ImagePattern(new Image(
         String.valueOf(MainMenuController.class.getResource(
             "sprites/spawner_sprite.gif"

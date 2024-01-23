@@ -26,7 +26,7 @@ public class ControlInputManager {
     private boolean right = false;
     private boolean pauseGame = false;
     private Map<MouseButton, Vector2D> mouseClicks = new ConcurrentHashMap<>();
-    private Vector2D mousePosition = new Vector2D(0,0);
+    private Vector2D mousePosition = new Vector2D(0, 0);
 
     private ControlInputManager() {
         Scene scene = SceneManager.getSceneManager().getMainPane().getScene();
@@ -37,7 +37,7 @@ public class ControlInputManager {
     }
 
     public static ControlInputManager getControlInputManager() {
-        if (controlInputManager == null) {
+        if(controlInputManager == null) {
             controlInputManager = new ControlInputManager();
         }
         return controlInputManager;
@@ -93,7 +93,7 @@ public class ControlInputManager {
 
     private void handleKeyEvent(KeyEvent keyEvent, boolean state) {
         String character = keyEvent.getCode().getName().toUpperCase();
-        switch (character) {
+        switch(character) {
             case "W":
                 setForward(state);
                 break;
@@ -116,7 +116,7 @@ public class ControlInputManager {
 
     public Vector2D hasLeftClicked() {
         Vector2D target = mouseClicks.get(MouseButton.PRIMARY);
-        if (target != null) {
+        if(target != null) {
             mouseClicks.remove(MouseButton.PRIMARY);
         }
         return target;

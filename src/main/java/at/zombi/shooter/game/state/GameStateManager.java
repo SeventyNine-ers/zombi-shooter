@@ -3,10 +3,11 @@ package at.zombi.shooter.game.state;
 /**
  * Diese Klasse beinhaltet die Logik in Bezug auf die GameState, welche geändert wird.
  * Hier wird auf die einzelnen States reagiert und eventuell resetted.
- *
+ * <p>
  * Ersteller: Alexander Doubrava
  * Datum: 06.01.2024
  */
+
 import at.zombi.shooter.game.elements.Player;
 
 public class GameStateManager {
@@ -24,7 +25,7 @@ public class GameStateManager {
     }
 
     public static synchronized GameStateManager getGameStateManager() {
-        if (gameStateManager == null) {
+        if(gameStateManager == null) {
             gameStateManager = new GameStateManager();
         }
         return gameStateManager;
@@ -41,7 +42,7 @@ public class GameStateManager {
     public void updateTimeRemainingAndPlayerScore() {
         final long currentUnixSecond = System.currentTimeMillis() / 1000;
         Player player = gameStateManager.getGameMap().getPlayer();
-        if (lastUnixSecond != currentUnixSecond) {
+        if(lastUnixSecond != currentUnixSecond) {
             setTimeRemaining(getTimeRemaining() - 1); // We count fix down by 1 to prevent counting paused state.
             lastUnixSecond = currentUnixSecond;
             player.updateTimeBasedScore();

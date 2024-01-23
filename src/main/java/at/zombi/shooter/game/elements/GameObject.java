@@ -2,10 +2,11 @@ package at.zombi.shooter.game.elements;
 
 import at.zombi.shooter.game.Renderable;
 import at.zombi.shooter.game.util.Vector2D;
+
 /**
  * Diese Klasse beschreibt die Objekte im Spiel die im sichtbaren Fenster gerendet werden.
  * Elemente wie Position, und Identifikation des Objekts sind dabei notwendig.
- *
+ * <p>
  * Ersteller: Alexander Doubrava
  * Datum: 06.01.2024
  */

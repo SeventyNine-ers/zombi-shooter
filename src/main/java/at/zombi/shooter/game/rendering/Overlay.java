@@ -23,9 +23,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 //Im Pairprogramming implementiert: Alexander Doubrava, Patrick Kristof
+
 /**
  * Diese Klasse beinhaltet die Elemente die im Game-Overlay zu sehen sind und mit denen man agieren kann
- *
+ * <p>
  * Ersteller: Alexander Doubrava, Patrick Kristof
  * Datum: 06.01.2024
  */
@@ -44,26 +45,26 @@ public class Overlay implements Renderable {
     public List<Node> render() {
         GameStateManager gameStateManager = GameStateManager.getGameStateManager();
 
-        if (GameState.RUNNING.equals(gameStateManager.getState())) {
+        if(GameState.RUNNING.equals(gameStateManager.getState())) {
             return gameHeadsUpDisplay();
         }
-        if (GameState.PAUSED.equals(gameStateManager.getState())) {
-            if (gameStateManager.isFirstStart()) {
+        if(GameState.PAUSED.equals(gameStateManager.getState())) {
+            if(gameStateManager.isFirstStart()) {
                 return firstStartScreen();
             }
             return Stream.of(gameHeadsUpDisplay(), pauseScreen())
-                    .flatMap(Collection::stream)
-                    .collect(Collectors.toList());
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
         }
-        if (GameState.LOST.equals(gameStateManager.getState())) {
+        if(GameState.LOST.equals(gameStateManager.getState())) {
             return Stream.of(gameHeadsUpDisplay(), gameOverScreen("You are Dead!"))
-                    .flatMap(Collection::stream)
-                    .collect(Collectors.toList());
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
         }
-        if (GameState.WON.equals(gameStateManager.getState())) {
+        if(GameState.WON.equals(gameStateManager.getState())) {
             return Stream.of(gameHeadsUpDisplay(), gameOverScreen(" You survived!"))
-                    .flatMap(Collection::stream)
-                    .collect(Collectors.toList());
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
         }
 
         return gameHeadsUpDisplay();
@@ -93,16 +94,16 @@ public class Overlay implements Renderable {
         menuText.setFill(Paint.valueOf("white"));
 
         Vector2D clickedAt = controlInputManager.hasLeftClicked();
-        if (clickedAt != null) {
+        if(clickedAt != null) {
             Point2D clickedAtPoint = new Point2D(clickedAt.x, clickedAt.y);
-            if (restartButton.contains(clickedAtPoint)) {
+            if(restartButton.contains(clickedAtPoint)) {
                 gameStateManager.resetGameState();
                 return List.of();
             }
-            if (menuButton.contains(clickedAtPoint)) {
+            if(menuButton.contains(clickedAtPoint)) {
                 try {
                     SceneManager.getSceneManager().showMainMenu();
-                } catch (IOException exception) {
+                } catch(IOException exception) {
                 }
             }
         }
@@ -131,16 +132,16 @@ public class Overlay implements Renderable {
         menuText.setFill(Paint.valueOf("white"));
 
         Vector2D clickedAt = controlInputManager.hasLeftClicked();
-        if (clickedAt != null) {
+        if(clickedAt != null) {
             Point2D clickedAtPoint = new Point2D(clickedAt.x, clickedAt.y);
-            if (resumeButton.contains(clickedAtPoint)) {
+            if(resumeButton.contains(clickedAtPoint)) {
                 gameStateManager.setState(GameState.RUNNING);
                 return List.of();
             }
-            if (menuButton.contains(clickedAtPoint)) {
+            if(menuButton.contains(clickedAtPoint)) {
                 try {
                     SceneManager.getSceneManager().showMainMenu();
-                } catch (IOException exception) {
+                } catch(IOException exception) {
                 }
             }
         }
@@ -157,7 +158,7 @@ public class Overlay implements Renderable {
 
         final long playerHealth = gameStateManager.getGameMap().getPlayer().getHealth();
         final long playerScore = gameStateManager.getGameMap().getPlayer().getScore();
-        for (long i = 0; i < playerHealth; i += 100) {
+        for(long i = 0; i < playerHealth; i += 100) {
             Rectangle health = new Rectangle(10 + (i / 2d), 10, 40, 40);
             health.setFill(Paint.valueOf("red"));
             gameOverlay.add(health);
@@ -165,9 +166,9 @@ public class Overlay implements Renderable {
 
         Duration remainingPlaytime = Duration.ofSeconds(gameStateManager.getTimeRemaining());
         Text gameTimer = new Text(Application.SCREEN_WIDTH - 160, 50,
-                String.format("%02d", remainingPlaytime.toMinutesPart())
-                        + ":"
-                        + String.format("%02d", remainingPlaytime.toSecondsPart())
+            String.format("%02d", remainingPlaytime.toMinutesPart())
+                + ":"
+                + String.format("%02d", remainingPlaytime.toSecondsPart())
         );
         gameTimer.setFont(new Font("Calibri", 64));
         gameOverlay.add(gameTimer);
@@ -181,14 +182,14 @@ public class Overlay implements Renderable {
 
     private List<Node> firstStartScreen() {
         GameStateManager gameStateManager = GameStateManager.getGameStateManager();
-        if (gameStartedAt == 0) {
+        if(gameStartedAt == 0) {
             gameStartedAt = System.currentTimeMillis();
             return List.of(TRANSPARENT_OVERLAY);
         }
 
         final int startCountdown = 3;
         int startCounter = startCountdown - (int) ((System.currentTimeMillis() - gameStartedAt) / 1000);
-        if (startCounter <= 0) {
+        if(startCounter <= 0) {
             gameStartedAt = 0;
             gameStateManager.setFirstStart(false);
             gameStateManager.setState(GameState.RUNNING);

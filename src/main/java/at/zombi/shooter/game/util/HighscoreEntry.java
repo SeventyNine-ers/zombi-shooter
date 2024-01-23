@@ -14,9 +14,11 @@ public class HighscoreEntry implements Serializable {
     public String getPlayerName() {
         return playerName;
     }
+
     public int getScore() {
         return score;
     }
+
     @Override
     public String toString() {
         return "Player: " + playerName + ", Score: " + score;

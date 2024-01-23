@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 /**
  * Diese Klasse beinhaltet die Logik der gerenderten Elemente im Blick der Spieler-Kamera.
  * *
@@ -33,8 +34,8 @@ public class GameRenderer {
 
     public void renderLoop(long nowInMillis) {
         List<Node> screenElements = Stream.of(getCamera().render(), getOverlay().render())
-                .flatMap(Collection::stream)
-                .toList();
+            .flatMap(Collection::stream)
+            .toList();
 
         // TODO Adjust screenElements to screen size (currently fixed to 1280x720p)
 
@@ -49,7 +50,7 @@ public class GameRenderer {
     }
 
     public void stopRenderLoop() {
-        if (animationTimer != null) {
+        if(animationTimer != null) {
             animationTimer.stop();
         }
     }

@@ -37,8 +37,8 @@ public class ScoreboardController {
         scoreboardText.setFont(Font.font("Arial", FontWeight.BOLD, 22));
 
         LinearGradient gradient = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE,
-                new Stop(0, Color.GREENYELLOW),
-                new Stop(1, Color.DARKGREEN)
+            new Stop(0, Color.GREENYELLOW),
+            new Stop(1, Color.DARKGREEN)
         );
         scoreboardText.setFill(gradient);
         scoreboardText.setTextAlignment(TextAlignment.LEFT);
@@ -46,19 +46,19 @@ public class ScoreboardController {
 
         // Fuege Hintergundbild hinzu
         scoreboardVBox.setBackground(new Background(new BackgroundImage(
-                new Image(
-                        String.valueOf(ScoreboardController.class.getResource(
-                                "backgrounds/Zombi_Background_Scoreboard.jpg"
-                        )),
-                        Application.SCREEN_WIDTH,
-                        Application.SCREEN_HEIGHT,
-                        false,
-                        true
-                ),
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT
+            new Image(
+                String.valueOf(ScoreboardController.class.getResource(
+                    "backgrounds/Zombi_Background_Scoreboard.jpg"
+                )),
+                Application.SCREEN_WIDTH,
+                Application.SCREEN_HEIGHT,
+                false,
+                true
+            ),
+            BackgroundRepeat.NO_REPEAT,
+            BackgroundRepeat.NO_REPEAT,
+            BackgroundPosition.DEFAULT,
+            BackgroundSize.DEFAULT
         )));
 
     }

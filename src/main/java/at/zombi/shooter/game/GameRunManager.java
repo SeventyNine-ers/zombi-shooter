@@ -24,7 +24,7 @@ public class GameRunManager {
     }
 
     public static synchronized GameRunManager getGameRunManager() {
-        if (gameRunManager == null) {
+        if(gameRunManager == null) {
             gameRunManager = new GameRunManager();
         }
 
@@ -43,10 +43,10 @@ public class GameRunManager {
     }
 
     public synchronized void stopGame() {
-        if (gameRenderer != null) {
+        if(gameRenderer != null) {
             gameRenderer.stopRenderLoop();
         }
-        if (gameMainLoop != null) {
+        if(gameMainLoop != null) {
             gameMainLoop.stopMainLoop();
         }
     }

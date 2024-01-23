@@ -6,7 +6,7 @@ import at.zombi.shooter.game.util.Vector2D;
 /**
  * Diese Klasse beinhaltet die Beschreibung der Game-Objekte welche als Kollisionsgegenstände im Spiel agieren.
  * Beispiele: Kugel, Baum, Wand --> Elemente die nicht "übergangen" werden sollen
- *
+ * <p>
  * Ersteller: Alexander Doubrava
  * Datum: 06.01.2024
  */

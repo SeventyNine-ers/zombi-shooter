@@ -20,21 +20,21 @@ public class HowToController {
     @FXML
     public void initialize() {
         String howToContent = "Willkommen zum Zombie Shooter!\n\n" +
-                "Ziel: Überlebe 5 Minuten und besiege die Zombies!\n\n" +
-                "Steuerung:\n" +
-                "  - Bewegung: W-A-S-D\n" +
-                "  - Pause: Esc\n" +
-                "  - Zielen: Maus bewegen\n" +
-                "  - Schießen: Linksklick\n\n" +
-                "Spielregeln:\n" +
-                "  - Du hast 3 Leben (oben links)\n" +
-                "  - Überlebe, um das Spiel zu gewinnen!\n\n" +
-                "Punkteberechnung:\n" +
-                "  - Zombie kill (+10 Punkte)\n" +
-                "  - Jede überlebte Sekunde (+1 Punkt)\n" +
-                "  - Jedes Leben am Ende übrig (+50 Punkte)\n" +
-                "  - Jeder Schuss, der daneben geht (-5 Punkte)\n\n" +
-                "Viel Erfolg und gute Jagd!\n\n\n\n";
+            "Ziel: Überlebe 5 Minuten und besiege die Zombies!\n\n" +
+            "Steuerung:\n" +
+            "  - Bewegung: W-A-S-D\n" +
+            "  - Pause: Esc\n" +
+            "  - Zielen: Maus bewegen\n" +
+            "  - Schießen: Linksklick\n\n" +
+            "Spielregeln:\n" +
+            "  - Du hast 3 Leben (oben links)\n" +
+            "  - Überlebe, um das Spiel zu gewinnen!\n\n" +
+            "Punkteberechnung:\n" +
+            "  - Zombie kill (+10 Punkte)\n" +
+            "  - Jede überlebte Sekunde (+1 Punkt)\n" +
+            "  - Jedes Leben am Ende übrig (+50 Punkte)\n" +
+            "  - Jeder Schuss, der daneben geht (-5 Punkte)\n\n" +
+            "Viel Erfolg und gute Jagd!\n\n\n\n";
 
         howToText.setFont(Font.font("Arial", FontWeight.BOLD, 22));
 
@@ -48,19 +48,19 @@ public class HowToController {
 
         // Fuege Hintergundbild hinzu
         howToVBox.setBackground(new Background(new BackgroundImage(
-                new Image(
-                        String.valueOf(HowToController.class.getResource(
-                                "backgrounds/Zombi_Background_HowTo.jpg"
-                        )),
-                        Application.SCREEN_WIDTH,
-                        Application.SCREEN_HEIGHT,
-                        false,
-                        true
-                ),
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT
+            new Image(
+                String.valueOf(HowToController.class.getResource(
+                    "backgrounds/Zombi_Background_HowTo.jpg"
+                )),
+                Application.SCREEN_WIDTH,
+                Application.SCREEN_HEIGHT,
+                false,
+                true
+            ),
+            BackgroundRepeat.NO_REPEAT,
+            BackgroundRepeat.NO_REPEAT,
+            BackgroundPosition.DEFAULT,
+            BackgroundSize.DEFAULT
         )));
 
     }

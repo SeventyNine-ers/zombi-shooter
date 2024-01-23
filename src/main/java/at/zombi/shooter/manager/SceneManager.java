@@ -18,7 +18,7 @@ public class SceneManager {
     }
 
     public static synchronized SceneManager getSceneManager() {
-        if (sceneManager == null) {
+        if(sceneManager == null) {
             sceneManager = new SceneManager();
         }
         return sceneManager;
@@ -69,7 +69,7 @@ public class SceneManager {
         try {
             this.mainPane.setMinWidth(this.mainPane.getScene().getWidth());
             this.mainPane.setMinHeight(this.mainPane.getScene().getHeight());
-        } catch (NullPointerException exception) {
+        } catch(NullPointerException exception) {
             // The stage isn't created yet. So we ignore resizing.
         }
 

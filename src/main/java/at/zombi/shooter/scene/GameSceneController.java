@@ -40,7 +40,7 @@ public class GameSceneController {
             BackgroundPosition.DEFAULT,
             new BackgroundSize(1.0, 1.0, true, true, false, false)
         ))));*/
-        gameView.setBackground(new Background(new BackgroundFill(Color.rgb(106,190,48), new CornerRadii(0), new Insets(0))));
+        gameView.setBackground(new Background(new BackgroundFill(Color.rgb(106, 190, 48), new CornerRadii(0), new Insets(0))));
         GameRunManager.getGameRunManager().startGame(gameView);
     }
 }

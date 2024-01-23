@@ -2,7 +2,7 @@ package at.zombi.shooter.game.loop;
 
 /**
  * Diese Klasse beinhaltet die Logik des Zeitablaufs und Zeitupdates im Bezug auf das Spielerlebnis.
- *
+ * <p>
  * Ersteller: Alexander Doubrava, Patrick Kristof
  * Datum: 06.01.2024
  */
@@ -21,7 +21,7 @@ public class DeltaTimeManager {
     }
 
     public void update() {
-        if (lastTick == 0) {
+        if(lastTick == 0) {
             lastTick = System.currentTimeMillis();
             return;
         }
@@ -33,7 +33,7 @@ public class DeltaTimeManager {
         deltaTime = tickTime / targetTickTime;
 
         // Ignore to extreme delays in tick time to prevent breaking stuff
-        if (deltaTime > 50) {
+        if(deltaTime > 50) {
             deltaTime = 1;
         }
 
@@ -41,7 +41,7 @@ public class DeltaTimeManager {
     }
 
     public static synchronized DeltaTimeManager getDeltaTimeManager() {
-        if (deltaTimeManager == null) {
+        if(deltaTimeManager == null) {
             deltaTimeManager = new DeltaTimeManager();
         }
 

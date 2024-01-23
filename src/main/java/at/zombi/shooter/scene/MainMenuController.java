@@ -45,18 +45,18 @@ public class MainMenuController {
 
         // Fuege Hintergundbild hinzu
         titleVBox.setBackground(new Background(new BackgroundImage(
-                new Image(
-                        String.valueOf(MainMenuController.class.getResource(
-                                "backgrounds/Zombi_Background_Titlescreen.png"
-                        )),
-                        Application.SCREEN_WIDTH, Application.SCREEN_HEIGHT,
-                        false,
-                        true
-                ),
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT
+            new Image(
+                String.valueOf(MainMenuController.class.getResource(
+                    "backgrounds/Zombi_Background_Titlescreen.png"
+                )),
+                Application.SCREEN_WIDTH, Application.SCREEN_HEIGHT,
+                false,
+                true
+            ),
+            BackgroundRepeat.NO_REPEAT,
+            BackgroundRepeat.NO_REPEAT,
+            BackgroundPosition.DEFAULT,
+            BackgroundSize.DEFAULT
         )));
 
         // Falls schon eine Name gespeichert ist, gib ihn im Textfeld aus
@@ -69,8 +69,7 @@ public class MainMenuController {
         startButton.setOnAction(e -> {
             if(playerNameTextField.getText() != null) {
                 PlayerData.getInstance().setPlayerName(playerNameTextField.getText());
-            }
-            else{
+            } else {
                 PlayerData.getInstance().setPlayerName("No name entered");
             }
             try {
@@ -83,8 +82,7 @@ public class MainMenuController {
         howToButton.setOnAction(e -> {
             if(playerNameTextField.getText() != null) {
                 PlayerData.getInstance().setPlayerName(playerNameTextField.getText());
-            }
-            else{
+            } else {
                 PlayerData.getInstance().setPlayerName("No name entered");
             }
             try {
@@ -97,8 +95,7 @@ public class MainMenuController {
         scoreboardButton.setOnAction(e -> {
             if(playerNameTextField.getText() != null) {
                 PlayerData.getInstance().setPlayerName(playerNameTextField.getText());
-            }
-            else{
+            } else {
                 PlayerData.getInstance().setPlayerName("No name entered");
             }
             try {
@@ -112,6 +109,7 @@ public class MainMenuController {
             onExitButtonClick();
         });
     }
+
     @FXML
     public void onStartButtonClick() throws IOException {
         SceneManager.getSceneManager().showGameScene();
